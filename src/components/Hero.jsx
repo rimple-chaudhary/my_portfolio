@@ -44,20 +44,20 @@ const AnimatedGrid = () => {
 };
 
 export default function Hero() {
-	const words = ["MERN Stack Developer", "Problem Solver", "Full-Stack Enthusiast", "JavaScript Lover", "Innovative Thinker"];
+	const words = ["Frontend Developer", "React.js Specialist", "TypeScript Enthusiast", "Problem Solver", "Performance Optimizer"];
 
 	const [code] = useState(`
     const profile = {
         name: 'Rimple Chaudhary',
-        title: 'MERN Developer | Problem Solver',
+        title: 'Frontend Developer | React Specialist',
         skills: [
-            'JavaScript', 'HTML', 'CSS', 'React', 'Git', 'Redux',
-            'TypeScript', 'Next.js', 'Express', 'MongoDB', 'Node.js'
+            'JavaScript', 'TypeScript', 'React', 'Next.js', 'Redux/RTK',
+            'React Query', 'Tailwind CSS', 'Node.js', 'Git'
         ],
         hardWorker: true,
         quickLearner: true,
         problemSolver: true,
-        yearsOfExperience: 1 year 11 months, 
+        yearsOfExperience: '3+ years', 
         achievement: 'Employee of the Year 2024',
         hireable: function() {
             return (

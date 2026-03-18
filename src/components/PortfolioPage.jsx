@@ -7,9 +7,8 @@ const AboutMe = () => {
 				<div className="content max-w-2xl">
 					<h2 className="text-[#4ECCA3] text-2xl font-bold mb-6">WHO I AM?</h2>
 					<p className="text-lg leading-relaxed">
-						Hello! I’m Rimple Chaudhary, a passionate JavaScript developer specializing in creating innovative web solutions and user-friendly interfaces with React. Currently,
-						I’m expanding into backend development to grow as a full-stack developer and create seamless, robust web applications. I’m a lifelong learner and innovator, driven by a desire to contribute to the developer community
-						with new ideas and tools that deliver real value.
+						Frontend Developer with 3 years of experience building scalable, enterprise-grade web applications using React.js, Next.js, and TypeScript. Delivered customer-facing portals for
+						EMAAR India and MaxLife Insurance by building performant, modular, user-centric interfaces that scale across teams and business needs.
 					</p>
 				</div>
 				<div className="image-container">

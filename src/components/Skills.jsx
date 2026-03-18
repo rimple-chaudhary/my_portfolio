@@ -2,13 +2,9 @@ import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import IconCloudDemo from "./globe";
-import { Code2, Paintbrush, Database, Layout, Cpu, Cloud } from "lucide-react";
-import { FaReact, FaNodeJs, FaPython, FaDocker, FaGitAlt, FaLinux, FaFigma, FaAws } from "react-icons/fa";
-import { SiNextdotjs, SiTypescript, SiTailwindcss, SiPostgresql, SiMongodb, SiGraphql, SiJest, SiWebpack, SiRedux, SiFirebase, SiVercel, SiVite } from "react-icons/si";
-import { TbBrandVscode } from "react-icons/tb";
-import { BsFileEarmarkCode, BsGrid1X2 } from "react-icons/bs";
-import { MdAnimation } from "react-icons/md";
-import { FcWorkflow } from "react-icons/fc";
+import { Code2, Layout, TestTube2, Wrench, CloudCog, PencilRuler, Network, CheckSquare } from "lucide-react";
+import { FaReact, FaNodeJs, FaFigma, FaAws, FaJs, FaCss3Alt, FaHtml5, FaGithub, FaGitAlt } from "react-icons/fa";
+import { SiNextdotjs, SiTypescript, SiTailwindcss, SiRedux, SiJest, SiTestinglibrary, SiWebpack, SiVite, SiPostman, SiNpm, SiEslint, SiAntdesign } from "react-icons/si";
 
 const SkillCard = ({ icon: Icon, title, skills, color }) => (
 	<Card className="group relative overflow-hidden bg-gray-900/80 border-gray-700 hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/20">
@@ -28,7 +24,7 @@ const SkillCard = ({ icon: Icon, title, skills, color }) => (
 						className="group/badge relative bg-gray-800/50 hover:bg-gray-700/80 text-gray-100 border-gray-600 flex items-center gap-2 py-2 px-3 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20"
 					>
 						<span className="transform group-hover/badge:scale-110 transition-transform duration-300">{skill.icon}</span>
-						<span className="font-medium">{skill.name}</span>
+						<span className="font-medium text-sm">{skill.name}</span>
 					</Badge>
 				))}
 			</div>
@@ -40,78 +36,86 @@ const SkillsSection = () => {
 	const skillCategories = [
 		{
 			icon: Code2,
-			title: "Frontend Development",
+			title: "Languages",
 			color: "text-blue-400",
 			skills: [
-				{ name: "React", icon: <FaReact className="w-4 h-4 text-[#61DAFB]" /> },
-				{
-					name: "Next.js",
-					icon: <SiNextdotjs className="w-4 h-4 text-white" />,
-				},
-				{
-					name: "TypeScript",
-					icon: <SiTypescript className="w-4 h-4 text-[#3178C6]" />,
-				},
-				{
-					name: "Tailwind CSS",
-					icon: <SiTailwindcss className="w-4 h-4 text-[#38B2AC]" />,
-				},
-				{
-					name: "HTML5",
-					icon: <BsFileEarmarkCode className="w-4 h-4 text-[#E34F26]" />,
-				},
-        { name: "Redux", icon: <SiRedux className="w-4 h-4 text-[#764ABC]" /> },
-				{
-					name: "CSS3",
-					icon: <BsFileEarmarkCode className="w-4 h-4 text-[#1572B6]" />,
-				},
+				{ name: "JavaScript (ES6+)", icon: <FaJs className="w-4 h-4 text-[#F7DF1E]" /> },
+				{ name: "TypeScript", icon: <SiTypescript className="w-4 h-4 text-[#3178C6]" /> },
+				{ name: "HTML5", icon: <FaHtml5 className="w-4 h-4 text-[#E34F26]" /> },
+				{ name: "CSS3", icon: <FaCss3Alt className="w-4 h-4 text-[#1572B6]" /> },
 			],
 		},
 		{
-			icon: Database,
-			title: "Backend Development",
-			color: "text-green-400",
+			icon: Layout,
+			title: "Frameworks & Libraries",
+			color: "text-emerald-400",
 			skills: [
-				{
-					name: "Node.js",
-					icon: <FaNodeJs className="w-4 h-4 text-[#339933]" />,
-				},
-				{
-					name: "MySQL",
-					icon: <SiPostgresql className="w-4 h-4 text-[#336791]" />,
-				},
-				{
-					name: "MongoDB",
-					icon: <SiMongodb className="w-4 h-4 text-[#47A248]" />,
-				},
-				{
-					name: "REST APIs",
-					icon: <BsGrid1X2 className="w-4 h-4 text-[#FF6C37]" />,
-				},
+				{ name: "React.js", icon: <FaReact className="w-4 h-4 text-[#61DAFB]" /> },
+				{ name: "Next.js", icon: <SiNextdotjs className="w-4 h-4 text-white" /> },
+				{ name: "Redux/RTK", icon: <SiRedux className="w-4 h-4 text-[#764ABC]" /> },
+				{ name: "React Query", icon: <SiRedux className="w-4 h-4 text-[#FF4154]" /> },
+				{ name: "Tailwind CSS", icon: <SiTailwindcss className="w-4 h-4 text-[#06B6D4]" /> },
+				{ name: "Ant Design", icon: <SiAntdesign className="w-4 h-4 text-[#1677FF]" /> },
+				{ name: "SSR/SSG", icon: <SiNextdotjs className="w-4 h-4 text-[#ffffff]" /> },
 			],
 		},
 		{
-			icon: Cpu,
-			title: "Tools & Technologies",
+			icon: TestTube2,
+			title: "Testing",
+			color: "text-yellow-400",
+			skills: [
+				{ name: "Jest", icon: <SiJest className="w-4 h-4 text-[#C21325]" /> },
+				{ name: "React Testing Library", icon: <SiTestinglibrary className="w-4 h-4 text-[#E33332]" /> },
+				{ name: "Unit Testing", icon: <TestTube2 className="w-4 h-4 text-[#facc15]" /> },
+			],
+		},
+		{
+			icon: Wrench,
+			title: "Build & Tools",
 			color: "text-pink-400",
 			skills: [
-				{
-					name: "VS Code",
-					icon: <TbBrandVscode className="w-4 h-4 text-[#007ACC]" />,
-				},
-				{ name: "Jest", icon: <SiJest className="w-4 h-4 text-[#C21325]" /> },
-
-				{ name: "Vercel", icon: <SiVercel className="w-4 h-4 text-white" /> },
+				{ name: "Webpack", icon: <SiWebpack className="w-4 h-4 text-[#8DD6F9]" /> },
 				{ name: "Vite", icon: <SiVite className="w-4 h-4 text-[#646CFF]" /> },
+				{ name: "Git/GitHub", icon: <FaGitAlt className="w-4 h-4 text-[#f34f29]" /> },
+				{ name: "Node.js", icon: <FaNodeJs className="w-4 h-4 text-[#339933]" /> },
+				{ name: "npm/yarn", icon: <SiNpm className="w-4 h-4 text-[#CC3534]" /> },
+				{ name: "ESLint", icon: <SiEslint className="w-4 h-4 text-[#4B32C3]" /> },
+				{ name: "Postman", icon: <SiPostman className="w-4 h-4 text-[#FF6C37]" /> },
+				{ name: "GitHub Copilot", icon: <FaGithub className="w-4 h-4 text-[#f4f4f4]" /> },
+			],
+		},
+		{
+			icon: CloudCog,
+			title: "Cloud & DevOps",
+			color: "text-indigo-400",
+			skills: [
+				{ name: "AWS S3", icon: <FaAws className="w-4 h-4 text-[#FF9900]" /> },
+				{ name: "CI/CD", icon: <Code2 className="w-4 h-4 text-[#06B6D4]" /> },
+			],
+		},
+		{
+			icon: PencilRuler,
+			title: "Design & UX",
+			color: "text-lime-400",
+			skills: [
+				{ name: "Figma", icon: <FaFigma className="w-4 h-4 text-[#F24E1E]" /> },
+				{ name: "Responsive Web Design", icon: <Layout className="w-4 h-4 text-[#67e8f9]" /> },
+			],
+		},
+		{
+			icon: Network,
+			title: "Methodologies",
+			color: "text-cyan-300",
+			skills: [
+				{ name: "Agile/Scrum", icon: <Network className="w-4 h-4 text-[#34d399]" /> },
+				{ name: "Code Reviews", icon: <CheckSquare className="w-4 h-4 text-[#22d3ee]" /> },
+				{ name: "JIRA", icon: <FaGithub className="w-4 h-4 text-[#0052CC]" /> },
 			],
 		},
 	];
 
 	return (
-		<main
-			className="pt-15 lg:pt-0 bg-gradient-to-b from-[#020617] via-[#0a0f1f] to-[#000D1A]/90
- text-white min-h-screen"
-		>
+		<main className="pt-15 lg:pt-0 bg-gradient-to-b from-[#020617] via-[#0a0f1f] to-[#000D1A]/90 text-white min-h-screen">
 			<section className="container mx-auto px-4 py-11">
 				<div className="flex justify-center items-center ">
 					<IconCloudDemo />

@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
   FaHome,
   FaLaptopCode,
-  FaUser,
   FaBriefcase,
-  FaGraduationCap,
   FaCode,
   FaEnvelope,
   FaBars,
@@ -34,12 +32,6 @@ export default function Header() {
       icon: FaBriefcase,
       text: "Experience",
       path: "/experience",
-    },
-    {
-      id: "education",
-      icon: FaGraduationCap,
-      text: "Education",
-      path: "/education",
     },
     { id: "projects", icon: FaLaptopCode, text: "Projects", path: "/projects" },
     { id: "contact", icon: FaEnvelope, text: "Contact", path: "/contact" },
