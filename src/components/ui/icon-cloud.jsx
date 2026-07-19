@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
-import { useTheme } from "next-themes";
 import { Cloud, fetchSimpleIcons, renderSimpleIcon } from "react-icon-cloud";
 
 export const cloudProps = {
@@ -57,7 +56,6 @@ export default function IconCloud({
   imageArray,
 }) {
   const [data, setData] = useState(null);
-  const { theme } = useTheme();
 
   useEffect(() => {
     if (iconSlugs.length > 0) {
@@ -70,9 +68,9 @@ export default function IconCloud({
     if (!data) return null;
 
     return Object.values(data.simpleIcons).map((icon) =>
-      renderCustomIcon(icon, theme || "dark")
+      renderCustomIcon(icon, "dark")
     );
-  }, [data, theme]);
+  }, [data]);
 
   return (
     // @ts-ignore

@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { Mail, MapPin, Phone, Send, Github, Linkedin } from "lucide-react";
 import { useState } from "react";
 
 export default function Contact() {
@@ -87,7 +87,7 @@ export default function Contact() {
 	};
 
 	return (
-		<main
+		<div
 			className="pt-20 lg:pt-[0rem] bg-gradient-to-b from-[#020617] via-[#0a0f1f] to-[#000D1A]/90
  text-white min-h-screen"
 		>
@@ -98,7 +98,7 @@ export default function Contact() {
 						<div className="space-y-8">
 							<div>
 								<h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Get in Touch</h2>
-								<p className="text-gray-300 text-lg">Have a question or want to work together? Drop us a message!</p>
+								<p className="text-gray-300 text-lg">Have a question or want to work together? Drop me a message!</p>
 							</div>
 
 							<div className="space-y-6">
@@ -118,7 +118,7 @@ export default function Contact() {
 									</div>
 									<div>
 										<h3 className="font-semibold">Location</h3>
-										<p className="text-gray-400">Mohali,Punjab</p>
+										<p className="text-gray-400">Mohali, India</p>
 									</div>
 								</div>
 								<div className="flex items-center space-x-4">
@@ -130,6 +130,27 @@ export default function Contact() {
 										<p className="text-gray-400">+91 8894319767</p>
 									</div>
 								</div>
+
+								<div className="flex items-center gap-4 pt-2">
+									<a
+										href="https://github.com/rimple-chaudhary"
+										target="_blank"
+										rel="noopener noreferrer"
+										aria-label="GitHub profile"
+										className="p-3 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white transition-colors"
+									>
+										<Github className="w-6 h-6" />
+									</a>
+									<a
+										href="https://linkedin.com/in/rimple-chaudhary-22339a175"
+										target="_blank"
+										rel="noopener noreferrer"
+										aria-label="LinkedIn profile"
+										className="p-3 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 hover:text-blue-400 transition-colors"
+									>
+										<Linkedin className="w-6 h-6" />
+									</a>
+								</div>
 							</div>
 						</div>
 
@@ -138,55 +159,85 @@ export default function Contact() {
 							<form onSubmit={handleSubmit} className="space-y-6">
 								<div className="grid grid-cols-1 gap-6">
 									<div>
+										<label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
+											Name
+										</label>
 										<input
+											id="name"
+											name="name"
 											type="text"
 											placeholder="Your Name"
+											autoComplete="name"
+											aria-invalid={Boolean(errors.name)}
+											aria-describedby={errors.name ? "name-error" : undefined}
 											className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
 												errors.name ? "border-red-500" : "border-gray-700"
 											} focus:border-blue-500 focus:outline-none transition-colors`}
 											value={formData.name}
 											onChange={(e) => setFormData({ ...formData, name: e.target.value })}
 										/>
-										{errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+										{errors.name && <p id="name-error" className="text-red-400 text-sm mt-1">{errors.name}</p>}
 									</div>
 
 									<div>
+										<label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
+											Email
+										</label>
 										<input
+											id="email"
+											name="email"
 											type="email"
 											placeholder="Your Email"
+											autoComplete="email"
+											aria-invalid={Boolean(errors.email)}
+											aria-describedby={errors.email ? "email-error" : undefined}
 											className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
 												errors.email ? "border-red-500" : "border-gray-700"
 											} focus:border-blue-500 focus:outline-none transition-colors`}
 											value={formData.email}
 											onChange={(e) => setFormData({ ...formData, email: e.target.value })}
 										/>
-										{errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+										{errors.email && <p id="email-error" className="text-red-400 text-sm mt-1">{errors.email}</p>}
 									</div>
 
 									<div>
+										<label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-1">
+											Subject
+										</label>
 										<input
+											id="subject"
+											name="subject"
 											type="text"
 											placeholder="Subject"
+											aria-invalid={Boolean(errors.subject)}
+											aria-describedby={errors.subject ? "subject-error" : undefined}
 											className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
 												errors.subject ? "border-red-500" : "border-gray-700"
 											} focus:border-blue-500 focus:outline-none transition-colors`}
 											value={formData.subject}
 											onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
 										/>
-										{errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
+										{errors.subject && <p id="subject-error" className="text-red-400 text-sm mt-1">{errors.subject}</p>}
 									</div>
 
 									<div>
+										<label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
+											Message
+										</label>
 										<textarea
+											id="message"
+											name="message"
 											placeholder="Your Message"
 											rows="4"
+											aria-invalid={Boolean(errors.message)}
+											aria-describedby={errors.message ? "message-error" : undefined}
 											className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
 												errors.message ? "border-red-500" : "border-gray-700"
 											} focus:border-blue-500 focus:outline-none transition-colors resize-none`}
 											value={formData.message}
 											onChange={(e) => setFormData({ ...formData, message: e.target.value })}
 										></textarea>
-										{errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
+										{errors.message && <p id="message-error" className="text-red-400 text-sm mt-1">{errors.message}</p>}
 									</div>
 								</div>
 
@@ -201,7 +252,11 @@ export default function Contact() {
 
 							{/* Status Message */}
 							{status && (
-								<div className={`mt-4 text-center ${status.includes("success") ? "text-green-400" : "text-red-400"}`}>
+								<div
+									role="status"
+									aria-live="polite"
+									className={`mt-4 text-center ${status.includes("success") ? "text-green-400" : "text-red-400"}`}
+								>
 									<p>{status}</p>
 								</div>
 							)}
@@ -209,6 +264,6 @@ export default function Contact() {
 					</div>
 				</div>
 			</section>
-		</main>
+		</div>
 	);
 }

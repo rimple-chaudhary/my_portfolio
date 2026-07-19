@@ -1,5 +1,6 @@
 import React from "react";
 import { Code2, Trophy, Cpu } from "lucide-react";
+import Reveal from "./ui/Reveal";
 
 const ExperienceCard = ({ title, company, period, description, icon: Icon, badge, projects = [] }) => {
 	const bulletPoints = Array.isArray(description) ? description : [description].filter(Boolean);
@@ -66,16 +67,17 @@ const ExperienceSection = () => {
 	const experiences = [
 		{
 			icon: Cpu,
-			title: "Frontend Developer",
-			company: "Technogetic",
+			title: "Software Developer",
+			company: "Technogetic Pvt. Ltd.",
 			period: "Nov 2023 – Present",
-			badge: "Employee of the Year",
-			projects: ["EMAAR India", "MaxLife Insurance"],
+			badge: "Employee of the Year 2024",
+			projects: ["EMAAR India", "MaxLife Insurance", "GBP Automation & AI SEO"],
 			description: [
-				"Developed enterprise-grade customer portals for EMAAR India and MaxLife Insurance with React.js, Next.js, and TypeScript.",
-				"Built scalable frontend systems with Redux Toolkit and React Query to support real-time dashboards and reduce repetitive API calls.",
-				"Collaborated with design, backend, and QA teams to deliver reliable feature releases, optimized routing, and maintainable component architecture.",
-				"Contributed to Agile delivery cycles through stand-ups, sprint planning, and code review participation.",
+				"Architected a reusable React component library of 20+ components adopted across 5 enterprise applications, accelerating development velocity by 30%.",
+				"Shipped customer-facing portals for EMAAR India and MaxLife Insurance with React, TypeScript, Redux and React Query, serving 10,000+ end users in production.",
+				"Engineered a multi-step DigiLocker/Aadhaar identity verification workflow processing 500+ verifications monthly, securing credentials via AWS Secrets Manager.",
+				"Improved page load time by 40% via React.lazy code splitting, SWR caching and skeleton loaders, achieving 90+ Lighthouse scores, and cut redundant API calls by 30%.",
+				"Built AI-driven Google Business Profile automation with n8n, LangChain and LangGraph, generating SEO content and keyword recommendations for business accounts.",
 			],
 		},
 		{
@@ -83,11 +85,11 @@ const ExperienceSection = () => {
 			title: "Frontend Developer Intern",
 			company: "Innow8 Apps",
 			period: "Apr 2023 – Oct 2023",
-			projects: ["TaxZap"],
+			projects: ["TaxZap (PWA)"],
 			description: [
-				"Built responsive user flows for TaxZap, improving form usability and consistency across desktop and mobile.",
-				"Implemented Redux-based state patterns and API integration for tax workflow pages to keep user journeys predictable.",
-				"Worked closely with cross-functional teammates to ship feature increments and improve release stability.",
+				"Built 15+ responsive, mobile-first UI components and integrated 3 third-party APIs (payment, analytics, notifications) for the TaxZap progressive web app.",
+				"Boosted user engagement by 15% through Lottie animations, real-time form validation and an accessible Ant Design UI.",
+				"Collaborated with 2 backend engineers to ensure seamless data flow and predictable user journeys.",
 			],
 		},
 	];
@@ -121,7 +123,9 @@ const ExperienceSection = () => {
 
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 max-w-7xl mx-auto">
 						{experiences.map((exp, index) => (
-							<ExperienceCard key={index} {...exp} />
+							<Reveal key={index} delay={index * 120} className="h-full">
+								<ExperienceCard {...exp} />
+							</Reveal>
 						))}
 					</div>
 				</div>

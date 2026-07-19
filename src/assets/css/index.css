@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Accessibility: visible focus ring for keyboard users */
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 @keyframes float-slow {
   0%,
   100% {
@@ -10,6 +28,19 @@
   50% {
     transform: translateY(-10px) rotate(-1deg);
   }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
 }
 
 @keyframes gradient-shift {
