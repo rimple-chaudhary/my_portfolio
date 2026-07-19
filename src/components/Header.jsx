@@ -6,6 +6,7 @@ import {
   FaCode,
   FaEnvelope,
   FaBars,
+  FaGraduationCap,
 } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 
@@ -16,13 +17,11 @@ export default function Header() {
     return path;
   });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    const path = location.pathname.substring(1) || "home";
+    setActiveLink(path);
+  }, [location.pathname]);
 
   const navLinks = [
     { id: "home", icon: FaHome, text: "Home", path: "/" },
@@ -34,6 +33,7 @@ export default function Header() {
       path: "/experience",
     },
     { id: "projects", icon: FaLaptopCode, text: "Projects", path: "/projects" },
+    { id: "education", icon: FaGraduationCap, text: "Education", path: "/education" },
     { id: "contact", icon: FaEnvelope, text: "Contact", path: "/contact" },
   ];
 
