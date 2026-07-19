@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import Reveal from "./ui/Reveal";
 import IconCloudDemo from "./globe";
 import { Code2, Layout, TestTube2, Wrench, CloudCog, PencilRuler, Network, CheckSquare, Server, Database, Bot, Workflow, Sparkles } from "lucide-react";
 import { FaReact, FaNodeJs, FaFigma, FaAws, FaJs, FaCss3Alt, FaHtml5, FaGithub, FaGitAlt } from "react-icons/fa";
@@ -145,7 +146,9 @@ const SkillsSection = () => {
 				</div>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 					{skillCategories.map((category, index) => (
-						<SkillCard key={index} icon={category.icon} title={category.title} skills={category.skills} color={category.color} />
+						<Reveal key={index} delay={(index % 3) * 100}>
+							<SkillCard icon={category.icon} title={category.title} skills={category.skills} color={category.color} />
+						</Reveal>
 					))}
 				</div>
 			</section>

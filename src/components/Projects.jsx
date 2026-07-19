@@ -5,6 +5,7 @@ import { SiTypescript, SiNextdotjs, SiRedux, SiTailwindcss, SiAntdesign } from "
 import { BsCloudRainHeavyFill, BsWindowStack, BsRobot } from "react-icons/bs";
 import { SiStrapi } from "react-icons/si";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Reveal from "./ui/Reveal";
 
 const projectIconByTag = (tag) => {
 	const iconMap = {
@@ -150,9 +151,9 @@ const ProjectShowcase = () => {
 					const hasDemo = Boolean(project.links?.demo);
 
 					return (
-						<div
+						<Reveal
 							key={index}
-							className="flex flex-col md:flex-row items-center group rounded-lg p-[2px] bg-gradient-to-r from-cyan-500 via-purple-500 to-emerald-500 bg-[length:400%_400%] animate-gradient-xy hover:bg-[length:100%_100%] transition-all duration-700 shadow-lg"
+							className="flex flex-col md:flex-row items-center group rounded-lg p-[2px] bg-gradient-to-r from-cyan-500 via-purple-500 to-emerald-500 bg-[length:400%_400%] animate-gradient-xy hover:bg-[length:100%_100%] shadow-lg"
 						>
 							<div className="md:w-1/2 self-stretch overflow-hidden rounded-lg">
 								<ProjectMock title={project.title} tags={project.tags} accent={project.accent} />
@@ -209,7 +210,7 @@ const ProjectShowcase = () => {
 									</div>
 								</CardContent>
 							</Card>
-						</div>
+						</Reveal>
 					);
 				})}
 			</div>

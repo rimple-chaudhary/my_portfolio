@@ -1,5 +1,6 @@
 import React from "react";
 import { Code2, Trophy, Cpu } from "lucide-react";
+import Reveal from "./ui/Reveal";
 
 const ExperienceCard = ({ title, company, period, description, icon: Icon, badge, projects = [] }) => {
 	const bulletPoints = Array.isArray(description) ? description : [description].filter(Boolean);
@@ -122,7 +123,9 @@ const ExperienceSection = () => {
 
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 max-w-7xl mx-auto">
 						{experiences.map((exp, index) => (
-							<ExperienceCard key={index} {...exp} />
+							<Reveal key={index} delay={index * 120} className="h-full">
+								<ExperienceCard {...exp} />
+							</Reveal>
 						))}
 					</div>
 				</div>
