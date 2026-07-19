@@ -9,4 +9,18 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        // Split heavy, independently-cacheable vendors into their own chunks
+        // so a change in app code doesn't bust the whole bundle.
+        manualChunks: {
+          "react-vendor": ["react", "react-dom", "react-router-dom"],
+          motion: ["framer-motion"],
+          prism: ["prismjs"],
+          "icon-cloud": ["react-icon-cloud"],
+        },
+      },
+    },
+  },
 });

@@ -13,7 +13,15 @@ const AboutMe = () => {
 					</p>
 				</div>
 				<div className="image-container">
-					<img src={profileImage} alt="Profile" className="w-72 h-72 rounded-lg object-cover shadow-lg" />
+					<img
+						src={profileImage}
+						alt="Rimple Chaudhary"
+						width={288}
+						height={288}
+						loading="lazy"
+						decoding="async"
+						className="w-72 h-72 rounded-lg object-cover shadow-lg"
+					/>
 				</div>
 			</div>
 		</section>
