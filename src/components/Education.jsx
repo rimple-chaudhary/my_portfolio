@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import EducationLoader from "./ui/EducationLoader";
-import { Star, Award, Calendar, BookOpen, GraduationCap, Trophy } from "lucide-react";
+import { Award, Calendar, BookOpen, Trophy, BadgeCheck } from "lucide-react";
 import { motion } from "framer-motion";
 
 const EducationSection = () => {
@@ -8,41 +7,46 @@ const EducationSection = () => {
 
 	const educationData = [
 		{
-			degree: "Master of Engineering in Biotechnology",
+			degree: "M.Tech",
 			school: "UIET, Panjab University",
 			mascot: "🎓",
-			year: "2018-2021",
-			achievements: ["Percentage: 80%","Published 3 research papers"],
-			skills: ["Biotechnology", "Genetics", "Bioprocess Engineering"],
-			description: "Advanced studies in biotechnology with a focus on research and innovation.",
+			year: "2018 – 2021",
+			achievements: ["Postgraduate Engineering"],
+			skills: ["Engineering", "Research"],
+			description: "Master of Technology at University Institute of Engineering & Technology, Panjab University.",
 		},
 		{
-			degree: "Bachelor of Technology in Biotechnology",
-			school: "Jaypee University of Information Technology, Waknaghat",
+			degree: "B.Tech",
+			school: "Jaypee University of Information Technology (JUIT), Solan",
 			mascot: "🔬",
-			year: "2014-2018",
-			achievements: ["Percentage: 70%"],
-			skills: ["Microbiology", "Biochemistry", "Bioinformatics"],
-			description: "Comprehensive understanding of biotechnology applications and industrial processes.",
+			year: "2014 – 2018",
+			achievements: ["Undergraduate Engineering"],
+			skills: ["Engineering", "Programming"],
+			description: "Bachelor of Technology at Jaypee University of Information Technology, Waknaghat, Solan.",
 		},
 		{
-			degree: "Central Board of School Education (CBSE)",
+			degree: "Class XII (CBSE)",
 			school: "DAV Centenary Public School",
 			mascot: "📘",
-			year: "2019-2021",
-			achievements: ["Percentage: 72%", "Subject: Medical"],
-			skills: ["Mathematics", "Physics", "Chemistry", "Biology"],
-			description: "Focused on core science subjects with emphasis on practical laboratory work and scientific research methodologies.",
+			year: "2014",
+			achievements: ["Senior Secondary"],
+			skills: ["Physics", "Chemistry", "Mathematics"],
+			description: "Senior secondary education under the CBSE board.",
 		},
 		{
-			degree: "ICSE Board",
-			school: "Mount Carmel Sr. Sec. School, Una",
+			degree: "Class X (ICSE)",
+			school: "Mount Carmel Sen. Sec. School, Una",
 			mascot: "🏫",
-			year: "2010-2019",
-			achievements: ["Percentage: 62%"],
+			year: "2012",
+			achievements: ["Secondary"],
 			skills: ["Mathematics", "Science", "English"],
-			description: "Strong foundation in science and analytical thinking with an emphasis on holistic education.",
+			description: "Secondary education under the ICSE board.",
 		},
+	];
+
+	const certifications = [
+		{ name: "LangChain — Certification", year: "2026" },
+		{ name: "LangGraph — Certification", year: "2026" },
 	];
 
 	const containerVariants = {
@@ -127,6 +131,35 @@ const EducationSection = () => {
 							</div>
 						</motion.div>
 					))}
+				</motion.div>
+
+				{/* Certifications */}
+				<motion.div
+					initial={{ opacity: 0, y: 20 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
+					transition={{ duration: 0.6 }}
+					className="mt-20"
+				>
+					<h3 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text text-transparent text-center mb-10">
+						Certifications
+					</h3>
+					<div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+						{certifications.map((cert, index) => (
+							<div
+								key={index}
+								className="flex items-center gap-4 rounded-xl border border-blue-400/20 bg-gray-900/50 backdrop-blur-sm p-6 transition-all duration-300 hover:border-teal-500 hover:scale-[1.02]"
+							>
+								<span className="p-3 rounded-lg bg-teal-500/10">
+									<BadgeCheck className="w-6 h-6 text-teal-400" aria-hidden="true" />
+								</span>
+								<div>
+									<p className="text-white font-semibold">{cert.name}</p>
+									<p className="text-gray-400 text-sm">{cert.year}</p>
+								</div>
+							</div>
+						))}
+					</div>
 				</motion.div>
 			</div>
 		</section>

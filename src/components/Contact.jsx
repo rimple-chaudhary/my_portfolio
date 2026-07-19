@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { Mail, MapPin, Phone, Send, Github, Linkedin } from "lucide-react";
 import { useState } from "react";
 
 export default function Contact() {
@@ -98,7 +98,7 @@ export default function Contact() {
 						<div className="space-y-8">
 							<div>
 								<h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Get in Touch</h2>
-								<p className="text-gray-300 text-lg">Have a question or want to work together? Drop us a message!</p>
+								<p className="text-gray-300 text-lg">Have a question or want to work together? Drop me a message!</p>
 							</div>
 
 							<div className="space-y-6">
@@ -118,7 +118,7 @@ export default function Contact() {
 									</div>
 									<div>
 										<h3 className="font-semibold">Location</h3>
-										<p className="text-gray-400">Mohali,Punjab</p>
+										<p className="text-gray-400">Mohali, India</p>
 									</div>
 								</div>
 								<div className="flex items-center space-x-4">
@@ -129,6 +129,27 @@ export default function Contact() {
 										<h3 className="font-semibold">Contact</h3>
 										<p className="text-gray-400">+91 8894319767</p>
 									</div>
+								</div>
+
+								<div className="flex items-center gap-4 pt-2">
+									<a
+										href="https://github.com/rimple-chaudhary"
+										target="_blank"
+										rel="noopener noreferrer"
+										aria-label="GitHub profile"
+										className="p-3 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white transition-colors"
+									>
+										<Github className="w-6 h-6" />
+									</a>
+									<a
+										href="https://linkedin.com/in/rimple-chaudhary-22339a175"
+										target="_blank"
+										rel="noopener noreferrer"
+										aria-label="LinkedIn profile"
+										className="p-3 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 hover:text-blue-400 transition-colors"
+									>
+										<Linkedin className="w-6 h-6" />
+									</a>
 								</div>
 							</div>
 						</div>

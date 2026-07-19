@@ -2,9 +2,9 @@ import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import IconCloudDemo from "./globe";
-import { Code2, Layout, TestTube2, Wrench, CloudCog, PencilRuler, Network, CheckSquare } from "lucide-react";
+import { Code2, Layout, TestTube2, Wrench, CloudCog, PencilRuler, Network, CheckSquare, Server, Database, Bot, Workflow, Sparkles } from "lucide-react";
 import { FaReact, FaNodeJs, FaFigma, FaAws, FaJs, FaCss3Alt, FaHtml5, FaGithub, FaGitAlt } from "react-icons/fa";
-import { SiNextdotjs, SiTypescript, SiTailwindcss, SiRedux, SiJest, SiTestinglibrary, SiWebpack, SiVite, SiPostman, SiNpm, SiEslint, SiAntdesign } from "react-icons/si";
+import { SiNextdotjs, SiTypescript, SiTailwindcss, SiRedux, SiJest, SiTestinglibrary, SiWebpack, SiVite, SiPostman, SiNpm, SiEslint, SiAntdesign, SiExpress, SiMui, SiReactquery } from "react-icons/si";
 
 const SkillCard = ({ icon: Icon, title, skills, color }) => (
 	<Card className="group relative overflow-hidden bg-gray-900/80 border-gray-700 hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/20">
@@ -53,10 +53,32 @@ const SkillsSection = () => {
 				{ name: "React.js", icon: <FaReact className="w-4 h-4 text-[#61DAFB]" /> },
 				{ name: "Next.js", icon: <SiNextdotjs className="w-4 h-4 text-white" /> },
 				{ name: "Redux/RTK", icon: <SiRedux className="w-4 h-4 text-[#764ABC]" /> },
-				{ name: "React Query", icon: <SiRedux className="w-4 h-4 text-[#FF4154]" /> },
+				{ name: "React Query", icon: <SiReactquery className="w-4 h-4 text-[#FF4154]" /> },
 				{ name: "Tailwind CSS", icon: <SiTailwindcss className="w-4 h-4 text-[#06B6D4]" /> },
 				{ name: "Ant Design", icon: <SiAntdesign className="w-4 h-4 text-[#1677FF]" /> },
+				{ name: "MUI", icon: <SiMui className="w-4 h-4 text-[#007FFF]" /> },
 				{ name: "SSR/SSG", icon: <SiNextdotjs className="w-4 h-4 text-[#ffffff]" /> },
+			],
+		},
+		{
+			icon: Server,
+			title: "Backend",
+			color: "text-green-400",
+			skills: [
+				{ name: "Node.js", icon: <FaNodeJs className="w-4 h-4 text-[#339933]" /> },
+				{ name: "Express.js", icon: <SiExpress className="w-4 h-4 text-white" /> },
+				{ name: "SQL", icon: <Database className="w-4 h-4 text-[#00758F]" /> },
+			],
+		},
+		{
+			icon: Bot,
+			title: "AI & Automation",
+			color: "text-fuchsia-400",
+			skills: [
+				{ name: "LangChain", icon: <Bot className="w-4 h-4 text-[#1C3C3C]" /> },
+				{ name: "LangGraph", icon: <Workflow className="w-4 h-4 text-[#F97316]" /> },
+				{ name: "n8n", icon: <Workflow className="w-4 h-4 text-[#EA4B71]" /> },
+				{ name: "Claude Code", icon: <Sparkles className="w-4 h-4 text-[#D97757]" /> },
 			],
 		},
 		{
@@ -108,8 +130,9 @@ const SkillsSection = () => {
 			color: "text-cyan-300",
 			skills: [
 				{ name: "Agile/Scrum", icon: <Network className="w-4 h-4 text-[#34d399]" /> },
+				{ name: "SOLID Principles", icon: <CheckSquare className="w-4 h-4 text-[#22d3ee]" /> },
 				{ name: "Code Reviews", icon: <CheckSquare className="w-4 h-4 text-[#22d3ee]" /> },
-				{ name: "JIRA", icon: <FaGithub className="w-4 h-4 text-[#0052CC]" /> },
+				{ name: "JIRA", icon: <Network className="w-4 h-4 text-[#0052CC]" /> },
 			],
 		},
 	];
@@ -126,19 +149,6 @@ const SkillsSection = () => {
 					))}
 				</div>
 			</section>
-			<style jsx>{`
-				@keyframes shimmer {
-					0% {
-						transform: translateX(-100%);
-					}
-					100% {
-						transform: translateX(100%);
-					}
-				}
-				.animate-shimmer {
-					animation: shimmer 2s infinite;
-				}
-			`}</style>
 		</main>
 	);
 };

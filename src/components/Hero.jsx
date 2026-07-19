@@ -1,6 +1,8 @@
 import Prism from "prismjs";
 import "prismjs/components/prism-javascript";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { Trophy, Rocket, Code2, Sparkles, Lightbulb, ChevronDown, Download, FolderGit2 } from "lucide-react";
 import "../assets/css/tomorrow.css";
 import PortfolioPage from "./PortfolioPage";
 import { FlipWords } from "./ui/flip-words";
@@ -44,20 +46,20 @@ const AnimatedGrid = () => {
 };
 
 export default function Hero() {
-	const words = ["Frontend Developer", "React.js Specialist", "TypeScript Enthusiast", "Problem Solver", "Performance Optimizer"];
+	const words = ["Software Developer", "React & Next.js Specialist", "TypeScript Engineer", "AI Automation Builder", "Performance Optimizer"];
 
 	const [code] = useState(`
     const profile = {
         name: 'Rimple Chaudhary',
-        title: 'Frontend Developer | React Specialist',
+        title: 'Software Developer | React & Next.js',
         skills: [
             'JavaScript', 'TypeScript', 'React', 'Next.js', 'Redux/RTK',
-            'React Query', 'Tailwind CSS', 'Node.js', 'Git'
+            'React Query', 'Node.js', 'Express', 'LangChain', 'n8n'
         ],
         hardWorker: true,
         quickLearner: true,
         problemSolver: true,
-        yearsOfExperience: '3+ years', 
+        yearsOfExperience: 3,
         achievement: 'Employee of the Year 2024',
         hireable: function() {
             return (
@@ -90,7 +92,7 @@ export default function Hero() {
 					{/* Main content container */}
 					<div className="container mx-auto flex flex-col lg:flex-row items-center justify-between relative z-10 py-12 lg:py-0">
 						{/* Left column - Text content */}
-						<div className="w-full lg:w-1/2 mb-12 lg:mb-0 animate__animated animate__fadeInLeft relative">
+						<div className="w-full lg:w-1/2 mb-12 lg:mb-0 relative">
 							{/* Welcome badge */}
 							<div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 mb-6 sm:mb-8">
 								<div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></div>
@@ -110,35 +112,40 @@ export default function Hero() {
 
 							{/* Achievement Badge */}
 							<div className="inline-flex mr-4 items-center gap-2 px-4 py-2 rounded-xl bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 mb-6 sm:mb-8">
-								<i className="fas fa-trophy"></i>
+								<Trophy className="w-4 h-4" aria-hidden="true" />
 								<span>Employee of the Year 2024</span>
 							</div>
 
 							{/* Role badge */}
 							<div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 rounded-xl bg-gradient-to-r from-blue-500/10 to-teal-500/10 border border-blue-500/20 mb-6 sm:mb-8">
-								<i className="fas fa-rocket text-blue-400 animate-bounce text-sm sm:text-base"></i>
+								<Rocket className="w-4 h-4 text-blue-400 animate-bounce" aria-hidden="true" />
 								<span>
 									<FlipWords className={"text-lg sm:text-xl text-blue-400 font-medium"} words={words} />
 								</span>
 							</div>
 
 							{/* CTA Buttons */}
-							<div className="flex flex-col sm:flex-row gap-4 sm:gap-6 animate__animated animate__fadeInUp animate__delay-2s">
+							<div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
 								{/* View Projects Button */}
-								<a
-									href="https://github.com/rimple-chaudhary"
+								<Link
+									to="/projects"
 									className="group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-teal-400 p-0.5 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_2rem_-0.5rem_#60A5FA]"
-								></a>
+								>
+									<span className="flex items-center justify-center gap-2 w-full px-6 sm:px-8 py-3 sm:py-4 rounded-[11px] bg-gray-900 font-medium text-white transition-colors duration-300 group-hover:bg-transparent group-hover:text-gray-900">
+										<FolderGit2 className="w-4 h-4" aria-hidden="true" />
+										<span>View Projects</span>
+									</span>
+								</Link>
 
 								<a
 									href="/files/resume.pdf"
-									download="Rimple_Resume.pdf"
+									download="Rimple_Chaudhary_Resume.pdf"
 									className="group relative inline-flex items-center justify-center gap-3 p-0.5 rounded-xl bg-gradient-to-r from-gray-800 to-gray-700 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_2rem_-0.5rem_#60A5FA]"
 								>
 									<span className="block w-full px-6 sm:px-8 py-3 sm:py-4 rounded-[11px] bg-gray-900 border border-gray-700/50 transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-gray-800 group-hover:to-gray-700">
 										<span className="relative flex items-center justify-center gap-2 text-gray-300 font-medium group-hover:text-white">
-											<span>Get Resume</span>
-											<i className="fas fa-envelope transform transition-all duration-300 group-hover:rotate-12"></i>
+											<span>Download Résumé</span>
+											<Download className="w-4 h-4 transform transition-all duration-300 group-hover:translate-y-0.5" aria-hidden="true" />
 										</span>
 									</span>
 								</a>
@@ -146,24 +153,24 @@ export default function Hero() {
 
 							{/* Floating badges */}
 							<div className="hidden lg:block absolute left-[5.5rem] top-[2.3rem] animate-float-slow">
-								<div className="px-4 py-2 rounded-lg bg-purple-500/10 backdrop-blur-sm border border-purple-500/20 text-purple-400">
-									<i className="fas fa-wand-magic-sparkles"></i>&nbsp;&nbsp;UI Magic
+								<div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/10 backdrop-blur-sm border border-purple-500/20 text-purple-400">
+									<Sparkles className="w-4 h-4" aria-hidden="true" /> AI Automation
 								</div>
 							</div>
 							<div className="hidden lg:block absolute right-10 top-20 animate-float">
-								<div className="px-4 py-2 rounded-lg bg-blue-500/10 backdrop-blur-sm border border-blue-500/20 text-blue-400">
-									<i className="fas fa-code"></i>&nbsp;&nbsp;Clean Code
+								<div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-500/10 backdrop-blur-sm border border-blue-500/20 text-blue-400">
+									<Code2 className="w-4 h-4" aria-hidden="true" /> Clean Code
 								</div>
 							</div>
 							<div className="hidden lg:block absolute top-[17rem] left-[70%] transform -translate-x-1/2 animate-float">
-								<div className="px-4 py-2 rounded-lg bg-amber-500/10 backdrop-blur-sm border border-amber-500/20 text-amber-400">
-									<i className="fas fa-lightbulb"></i>&nbsp;&nbsp;Innovation
+								<div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500/10 backdrop-blur-sm border border-amber-500/20 text-amber-400">
+									<Lightbulb className="w-4 h-4" aria-hidden="true" /> Innovation
 								</div>
 							</div>
 						</div>
 
 						{/* Right column - Code window */}
-						<div className="w-full lg:w-1/2 animate__animated animate__fadeInDown animate__delay-0.1s">
+						<div className="w-full lg:w-1/2">
 							<div className="gradient-border">
 								<div className="code-window bg-[#091121]">
 									<div className="window-header">
@@ -171,7 +178,7 @@ export default function Hero() {
 										<div className="window-dot bg-yellow-500"></div>
 										<div className="window-dot bg-green-500"></div>
 										<span className="ml-2 text-sm text-gray-400 flex items-center gap-2">
-											<i className="fas fa-code"></i>
+											<Code2 className="w-4 h-4" aria-hidden="true" />
 											developer.js
 										</span>
 									</div>
@@ -186,7 +193,7 @@ export default function Hero() {
 
 				{/* Scroll indicator */}
 				<div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce flex flex-col items-center gap-2">
-					<i className="fas fa-chevron-down text-blue-400 text-xl"></i>
+					<ChevronDown className="w-6 h-6 text-blue-400" aria-hidden="true" />
 				</div>
 
 				<PortfolioPage />

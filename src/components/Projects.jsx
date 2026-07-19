@@ -2,7 +2,8 @@ import React from "react";
 import { Github, ExternalLink, Cloud } from "lucide-react";
 import { FaReact, FaNodeJs } from "react-icons/fa";
 import { SiTypescript, SiNextdotjs, SiRedux, SiTailwindcss, SiAntdesign } from "react-icons/si";
-import { BsCloudRainHeavyFill, BsWindowStack, BsCloudFill } from "react-icons/bs";
+import { BsCloudRainHeavyFill, BsWindowStack, BsRobot } from "react-icons/bs";
+import { SiStrapi } from "react-icons/si";
 import taxzapp from "../assets/images/taxzapp.png";
 import maxlife from "../assets/images/maxlife.png";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -27,8 +28,14 @@ const projectIconByTag = (tag) => {
 		"Ant Design": <SiAntdesign className="text-[#1677ff]" />,
 		"PWA": <Cloud className="text-white" />,
 		"Responsive Design": <BsWindowStack className="text-[#38bdf8]" />,
-		"Strapi CMS": <BsCloudFill className="text-[#8ecae6]" />,
+		"Strapi CMS": <SiStrapi className="text-[#4945ff]" />,
 		"AWS S3": <BsCloudRainHeavyFill className="text-[#ff9900]" />,
+		"AWS": <BsCloudRainHeavyFill className="text-[#ff9900]" />,
+		"MUI": <BsWindowStack className="text-[#007fff]" />,
+		"n8n": <BsRobot className="text-[#ea4b71]" />,
+		"LangChain": <BsRobot className="text-[#1c3c3c]" />,
+		"LangGraph": <BsRobot className="text-[#f97316]" />,
+		"AI Workflows": <BsRobot className="text-[#a855f7]" />,
 	};
 
 	return iconMap[tag] || <BsWindowStack className="text-gray-300" />;
@@ -37,16 +44,31 @@ const projectIconByTag = (tag) => {
 const ProjectShowcase = () => {
 	const projects = [
 		{
-			title: "EMAAR India - Enterprise Property Portal",
+			title: "EMAAR India - Customer Web Portal",
 			description: [
-				"Delivered the EMAAR India portal frontend using React.js and TypeScript for enterprise-scale workflows.",
-				"Implemented reusable component systems and performance-oriented state patterns using React Query for smooth property and inquiry interactions.",
-				"Built Node.js backend integration points for efficient data orchestration and resilient API communication.",
-				"Enabled secure asset and media handling via AWS S3 and production-ready UI patterns for high-traffic modules.",
+				"Engineered a multi-step DigiLocker/Aadhaar identity verification workflow over RESTful APIs, reliably processing 500+ verifications monthly with credentials secured in AWS Secrets Manager.",
+				"Improved page load time by 40% through React.lazy code splitting, SWR caching and skeleton loaders, achieving 90+ Lighthouse performance scores.",
+				"Optimized API performance with React Query caching, reducing redundant network requests by 30% and improving perceived load times.",
+				"Redesigned the NOC (No Objection Certificate) journey, lifting completion rates by 25% via UX redesign and streamlined form validation.",
 			],
-			tags: ["React", "TypeScript", "React Query", "Node.js", "AWS S3"],
+			tags: ["React", "TypeScript", "React Query", "Node.js", "AWS", "MUI"],
 			links: {
 				demo: "https://www.emaar.com/",
+				github: "",
+			},
+			featured: true,
+			placeholder: true,
+		},
+		{
+			title: "GBP Automation & AI-Powered SEO Insights",
+			description: [
+				"Built an automated Google Business Profile scoring system for logged-in business accounts using n8n workflow automation.",
+				"Developed automated website-improvement recommendations driven by profile signals such as reviews, photos and profile completion.",
+				"Implemented AI-powered SEO content suggestions with targeted keyword recommendations to improve visibility and organic growth, orchestrated with LangChain and LangGraph.",
+			],
+			tags: ["n8n", "LangChain", "LangGraph", "AI Workflows"],
+			links: {
+				demo: "",
 				github: "",
 			},
 			featured: true,
@@ -65,8 +87,11 @@ const ProjectShowcase = () => {
 		},
 		{
 			title: "MaxLife - Life Insurance Platform",
-			description:
-				"Built and maintained MaxLife Insurance experiences with Redux state management, Strapi CMS integration, and mobile-first responsive design for policyholders and prospects.",
+			description: [
+				"Developed policyholder dashboards with Redux-based state management, handling complex data flows across 12+ policy types and 4 user roles.",
+				"Integrated Strapi CMS for content-driven page rendering, enabling the marketing team to independently update 50+ pages without developer intervention.",
+				"Established a reusable component architecture of 15+ shared components, improving UI consistency and cutting new-feature development time by 20%.",
+			],
 			tags: ["React", "Redux", "Strapi CMS", "Responsive Design"],
 			links: {
 				demo: "https://maxlifeinsurance.com/cs/login",
@@ -82,6 +107,7 @@ const ProjectShowcase = () => {
 				{projects.map((project, index) => {
 					const bullets = Array.isArray(project.description) ? project.description : [project.description];
 					const hasGithub = Boolean(project.links?.github);
+					const hasDemo = Boolean(project.links?.demo);
 
 					return (
 						<div
@@ -129,14 +155,17 @@ const ProjectShowcase = () => {
 													<Github size={22} />
 												</a>
 											)}
-											<a
-												href={project.links.demo}
-												className="text-slate-400 hover:text-emerald-400 transition-all duration-300 transform hover:scale-125"
-												target="_blank"
-												rel="noopener noreferrer"
-											>
-												<ExternalLink size={22} />
-											</a>
+											{hasDemo && (
+												<a
+													href={project.links.demo}
+													className="text-slate-400 hover:text-emerald-400 transition-all duration-300 transform hover:scale-125"
+													target="_blank"
+													rel="noopener noreferrer"
+													aria-label={`Open live demo of ${project.title}`}
+												>
+													<ExternalLink size={22} />
+												</a>
+											)}
 										</div>
 									</div>
 								</CardHeader>
