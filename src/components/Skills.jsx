@@ -138,7 +138,7 @@ const SkillsSection = () => {
 	];
 
 	return (
-		<main className="pt-15 lg:pt-0 bg-gradient-to-b from-[#020617] via-[#0a0f1f] to-[#000D1A]/90 text-white min-h-screen">
+		<div className="pt-15 lg:pt-0 bg-gradient-to-b from-[#020617] via-[#0a0f1f] to-[#000D1A]/90 text-white min-h-screen">
 			<section className="container mx-auto px-4 py-11">
 				<div className="flex justify-center items-center ">
 					<IconCloudDemo />
@@ -149,7 +149,7 @@ const SkillsSection = () => {
 					))}
 				</div>
 			</section>
-		</main>
+		</div>
 	);
 };
 

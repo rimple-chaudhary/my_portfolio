@@ -87,7 +87,7 @@ export default function Contact() {
 	};
 
 	return (
-		<main
+		<div
 			className="pt-20 lg:pt-[0rem] bg-gradient-to-b from-[#020617] via-[#0a0f1f] to-[#000D1A]/90
  text-white min-h-screen"
 		>
@@ -159,55 +159,85 @@ export default function Contact() {
 							<form onSubmit={handleSubmit} className="space-y-6">
 								<div className="grid grid-cols-1 gap-6">
 									<div>
+										<label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
+											Name
+										</label>
 										<input
+											id="name"
+											name="name"
 											type="text"
 											placeholder="Your Name"
+											autoComplete="name"
+											aria-invalid={Boolean(errors.name)}
+											aria-describedby={errors.name ? "name-error" : undefined}
 											className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
 												errors.name ? "border-red-500" : "border-gray-700"
 											} focus:border-blue-500 focus:outline-none transition-colors`}
 											value={formData.name}
 											onChange={(e) => setFormData({ ...formData, name: e.target.value })}
 										/>
-										{errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+										{errors.name && <p id="name-error" className="text-red-400 text-sm mt-1">{errors.name}</p>}
 									</div>
 
 									<div>
+										<label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
+											Email
+										</label>
 										<input
+											id="email"
+											name="email"
 											type="email"
 											placeholder="Your Email"
+											autoComplete="email"
+											aria-invalid={Boolean(errors.email)}
+											aria-describedby={errors.email ? "email-error" : undefined}
 											className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
 												errors.email ? "border-red-500" : "border-gray-700"
 											} focus:border-blue-500 focus:outline-none transition-colors`}
 											value={formData.email}
 											onChange={(e) => setFormData({ ...formData, email: e.target.value })}
 										/>
-										{errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+										{errors.email && <p id="email-error" className="text-red-400 text-sm mt-1">{errors.email}</p>}
 									</div>
 
 									<div>
+										<label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-1">
+											Subject
+										</label>
 										<input
+											id="subject"
+											name="subject"
 											type="text"
 											placeholder="Subject"
+											aria-invalid={Boolean(errors.subject)}
+											aria-describedby={errors.subject ? "subject-error" : undefined}
 											className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
 												errors.subject ? "border-red-500" : "border-gray-700"
 											} focus:border-blue-500 focus:outline-none transition-colors`}
 											value={formData.subject}
 											onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
 										/>
-										{errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
+										{errors.subject && <p id="subject-error" className="text-red-400 text-sm mt-1">{errors.subject}</p>}
 									</div>
 
 									<div>
+										<label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
+											Message
+										</label>
 										<textarea
+											id="message"
+											name="message"
 											placeholder="Your Message"
 											rows="4"
+											aria-invalid={Boolean(errors.message)}
+											aria-describedby={errors.message ? "message-error" : undefined}
 											className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
 												errors.message ? "border-red-500" : "border-gray-700"
 											} focus:border-blue-500 focus:outline-none transition-colors resize-none`}
 											value={formData.message}
 											onChange={(e) => setFormData({ ...formData, message: e.target.value })}
 										></textarea>
-										{errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
+										{errors.message && <p id="message-error" className="text-red-400 text-sm mt-1">{errors.message}</p>}
 									</div>
 								</div>
 
@@ -222,7 +252,11 @@ export default function Contact() {
 
 							{/* Status Message */}
 							{status && (
-								<div className={`mt-4 text-center ${status.includes("success") ? "text-green-400" : "text-red-400"}`}>
+								<div
+									role="status"
+									aria-live="polite"
+									className={`mt-4 text-center ${status.includes("success") ? "text-green-400" : "text-red-400"}`}
+								>
 									<p>{status}</p>
 								</div>
 							)}
@@ -230,6 +264,6 @@ export default function Contact() {
 					</div>
 				</div>
 			</section>
-		</main>
+		</div>
 	);
 }
