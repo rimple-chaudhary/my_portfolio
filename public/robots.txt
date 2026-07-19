@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Replace with your production domain
+Sitemap: https://rimple-chaudhary.vercel.app/sitemap.xml
