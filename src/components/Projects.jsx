@@ -4,17 +4,7 @@ import { FaReact, FaNodeJs } from "react-icons/fa";
 import { SiTypescript, SiNextdotjs, SiRedux, SiTailwindcss, SiAntdesign } from "react-icons/si";
 import { BsCloudRainHeavyFill, BsWindowStack, BsRobot } from "react-icons/bs";
 import { SiStrapi } from "react-icons/si";
-import taxzapp from "../assets/images/taxzapp.png";
-import maxlife from "../assets/images/maxlife.png";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
-const MacOsButtons = () => (
-	<div className="flex gap-2 mb-4">
-		<div className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 transition-colors shadow-md" />
-		<div className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 transition-colors shadow-md" />
-		<div className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 transition-colors shadow-md" />
-	</div>
-);
 
 const projectIconByTag = (tag) => {
 	const iconMap = {
@@ -41,6 +31,56 @@ const projectIconByTag = (tag) => {
 	return iconMap[tag] || <BsWindowStack className="text-gray-300" />;
 };
 
+// Generic, brand-safe "app UI" mockup used in place of real client screenshots.
+const ProjectMock = ({ title, tags, accent = "from-cyan-500/25 via-violet-500/20 to-blue-500/25" }) => (
+	<div
+		className={`relative w-full h-full min-h-[300px] p-5 flex flex-col bg-gradient-to-br ${accent} border border-white/10`}
+		role="img"
+		aria-label={`Illustrative UI mockup for ${title}`}
+	>
+		{/* Browser chrome */}
+		<div className="flex items-center gap-2 mb-4">
+			<span className="w-3 h-3 rounded-full bg-red-500/80" />
+			<span className="w-3 h-3 rounded-full bg-yellow-500/80" />
+			<span className="w-3 h-3 rounded-full bg-green-500/80" />
+			<div className="ml-3 h-5 flex-1 max-w-[200px] rounded-full bg-white/10 border border-white/10" />
+		</div>
+
+		{/* Faux app layout */}
+		<div className="flex gap-3 flex-1">
+			<div className="hidden sm:flex flex-col gap-2 w-1/4">
+				{[...Array(4)].map((_, i) => (
+					<div key={i} className="h-3 rounded bg-white/10" style={{ width: `${70 + (i % 3) * 10}%` }} />
+				))}
+			</div>
+			<div className="flex-1 flex flex-col gap-3">
+				<div className="relative h-16 rounded-lg bg-white/10 border border-white/10 overflow-hidden">
+					<div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" />
+				</div>
+				<div className="grid grid-cols-3 gap-2">
+					{[...Array(3)].map((_, i) => (
+						<div key={i} className="h-12 rounded-lg bg-white/10 border border-white/10" />
+					))}
+				</div>
+				<div className="h-3 w-3/4 rounded bg-white/10" />
+				<div className="h-3 w-1/2 rounded bg-white/10" />
+			</div>
+		</div>
+
+		{/* Title + tech icons */}
+		<div className="mt-5">
+			<div className="text-slate-100 text-lg md:text-xl font-bold">{title}</div>
+			<div className="flex flex-wrap gap-2 mt-3 text-2xl">
+				{tags.map((tag) => (
+					<span key={tag} className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-black/25 border border-white/10">
+						{projectIconByTag(tag)}
+					</span>
+				))}
+			</div>
+		</div>
+	</div>
+);
+
 const ProjectShowcase = () => {
 	const projects = [
 		{
@@ -56,8 +96,8 @@ const ProjectShowcase = () => {
 				demo: "https://www.emaar.com/",
 				github: "",
 			},
+			accent: "from-emerald-500/25 via-teal-500/20 to-blue-500/25",
 			featured: true,
-			placeholder: true,
 		},
 		{
 			title: "GBP Automation & AI-Powered SEO Insights",
@@ -71,8 +111,8 @@ const ProjectShowcase = () => {
 				demo: "",
 				github: "",
 			},
+			accent: "from-fuchsia-500/25 via-purple-500/20 to-blue-500/25",
 			featured: true,
-			placeholder: true,
 		},
 		{
 			title: "TaxZap - Tax Refund Simplified",
@@ -82,7 +122,7 @@ const ProjectShowcase = () => {
 			links: {
 				demo: "https://taxzapp.ie/",
 			},
-			image: taxzapp,
+			accent: "from-amber-500/25 via-orange-500/20 to-rose-500/25",
 			featured: true,
 		},
 		{
@@ -96,7 +136,7 @@ const ProjectShowcase = () => {
 			links: {
 				demo: "https://maxlifeinsurance.com/cs/login",
 			},
-			image: maxlife,
+			accent: "from-sky-500/25 via-indigo-500/20 to-cyan-500/25",
 			featured: true,
 		},
 	];
@@ -114,30 +154,11 @@ const ProjectShowcase = () => {
 							key={index}
 							className="flex flex-col md:flex-row items-center group rounded-lg p-[2px] bg-gradient-to-r from-cyan-500 via-purple-500 to-emerald-500 bg-[length:400%_400%] animate-gradient-xy hover:bg-[length:100%_100%] transition-all duration-700 shadow-lg"
 						>
-							<div className="md:w-1/2 overflow-hidden rounded-lg">
-								{project.placeholder ? (
-									<div className="relative w-full h-full min-h-[280px] flex flex-col justify-center items-center gap-6 p-8 bg-gradient-to-br from-emerald-500/20 via-violet-500/20 to-blue-500/20 border border-white/10">
-										<div className="text-slate-100 text-2xl md:text-3xl font-bold text-center">{project.title}</div>
-										<div className="flex flex-wrap justify-center gap-4 text-4xl">
-											{project.tags.map((tag) => (
-												<span key={tag} className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-black/20 border border-white/10">
-													{projectIconByTag(tag)}
-												</span>
-											))}
-										</div>
-									</div>
-								) : (
-									<img
-										src={project.image}
-										alt={project.title}
-										className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-									/>
-								)}
+							<div className="md:w-1/2 self-stretch overflow-hidden rounded-lg">
+								<ProjectMock title={project.title} tags={project.tags} accent={project.accent} />
 							</div>
 
 							<Card className="md:w-1/2 bg-gradient-to-br from-slate-800 to-gray-900 rounded-lg overflow-hidden shadow-md transition-transform duration-500 group-hover:scale-105 group-hover:shadow-2xl p-6">
-								<MacOsButtons />
-
 								<CardHeader>
 									<div className="flex justify-between items-start">
 										<div>
