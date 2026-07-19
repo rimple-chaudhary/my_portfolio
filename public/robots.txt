@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Replace with your production domain
-Sitemap: https://rimple-chaudhary.vercel.app/sitemap.xml
+Sitemap: https://my-portfolio-cyan-six-98.vercel.app/sitemap.xml
