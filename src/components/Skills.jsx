@@ -8,9 +8,9 @@ import { FaReact, FaNodeJs, FaFigma, FaAws, FaJs, FaCss3Alt, FaHtml5, FaGithub, 
 import { SiNextdotjs, SiTypescript, SiTailwindcss, SiRedux, SiJest, SiTestinglibrary, SiWebpack, SiVite, SiPostman, SiNpm, SiEslint, SiAntdesign, SiExpress, SiMui, SiReactquery } from "react-icons/si";
 
 const SkillCard = ({ icon: Icon, title, skills, color }) => (
-	<Card className="group relative overflow-hidden bg-gray-900/80 border-gray-700 hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/20">
+	<Card className="group relative h-full flex flex-col overflow-hidden bg-gray-900/80 border-gray-700 hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/20">
 		<div className="absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(100,100,255,0.1)] to-transparent group-hover:via-[rgba(100,100,255,0.2)] animate-shimmer"></div>
-		<CardContent className="p-6 relative z-10">
+		<CardContent className="p-6 relative z-10 flex-1">
 			<div className="flex items-center gap-4 mb-6">
 				<div className={`p-3 rounded-xl bg-gray-800/50 ${color} group-hover:scale-110 transition-transform duration-300`}>
 					<Icon className="w-8 h-8" />
@@ -146,7 +146,7 @@ const SkillsSection = () => {
 				</div>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 					{skillCategories.map((category, index) => (
-						<Reveal key={index} delay={(index % 3) * 100}>
+						<Reveal key={index} delay={(index % 3) * 100} className="h-full">
 							<SkillCard icon={category.icon} title={category.title} skills={category.skills} color={category.color} />
 						</Reveal>
 					))}

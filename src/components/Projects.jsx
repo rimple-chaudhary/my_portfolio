@@ -33,47 +33,89 @@ const projectIconByTag = (tag) => {
 };
 
 // Generic, brand-safe "app UI" mockup used in place of real client screenshots.
-const ProjectMock = ({ title, tags, accent = "from-cyan-500/25 via-violet-500/20 to-blue-500/25" }) => (
+// Bar heights for the faux analytics chart in the mockup.
+const CHART_BARS = [45, 70, 38, 82, 55, 95, 62, 78];
+
+const ProjectMock = ({ title, tags }) => (
 	<div
-		className={`relative w-full h-full min-h-[300px] p-5 flex flex-col bg-gradient-to-br ${accent} border border-white/10`}
+		className="group/mock relative w-full h-full min-h-[340px] p-4 sm:p-5 flex flex-col bg-gradient-to-br from-[#0a1222] via-[#0b1a34] to-[#020617] border border-blue-500/20 overflow-hidden"
 		role="img"
 		aria-label={`Illustrative UI mockup for ${title}`}
 	>
+		{/* Ambient glow */}
+		<div className="pointer-events-none absolute -top-16 -right-10 w-48 h-48 rounded-full bg-blue-500/10 blur-3xl animate-pulse" />
+
 		{/* Browser chrome */}
-		<div className="flex items-center gap-2 mb-4">
-			<span className="w-3 h-3 rounded-full bg-red-500/80" />
-			<span className="w-3 h-3 rounded-full bg-yellow-500/80" />
-			<span className="w-3 h-3 rounded-full bg-green-500/80" />
-			<div className="ml-3 h-5 flex-1 max-w-[200px] rounded-full bg-white/10 border border-white/10" />
+		<div className="relative flex items-center gap-2 mb-3">
+			<span className="w-3 h-3 rounded-full bg-red-400/90" />
+			<span className="w-3 h-3 rounded-full bg-yellow-400/90" />
+			<span className="w-3 h-3 rounded-full bg-green-400/90" />
+			<div className="ml-2 h-6 flex-1 rounded-md bg-black/25 border border-white/10 flex items-center px-3 gap-2">
+				<span className="w-2.5 h-2.5 rounded-full border border-white/30" />
+				<span className="h-1.5 w-1/3 rounded-full bg-white/25" />
+			</div>
 		</div>
 
-		{/* Faux app layout */}
-		<div className="flex gap-3 flex-1">
-			<div className="hidden sm:flex flex-col gap-2 w-1/4">
-				{[...Array(4)].map((_, i) => (
-					<div key={i} className="h-3 rounded bg-white/10" style={{ width: `${70 + (i % 3) * 10}%` }} />
+		{/* App window */}
+		<div className="relative flex-1 rounded-xl bg-black/25 border border-white/10 backdrop-blur-sm p-3 flex gap-3 min-h-0">
+			{/* Sidebar */}
+			<div className="hidden sm:flex flex-col gap-2 w-11 shrink-0">
+				{[...Array(5)].map((_, i) => (
+					<div
+						key={i}
+						className={`h-8 rounded-lg border ${
+							i === 0 ? "bg-white/25 border-white/30" : "bg-white/5 border-white/10"
+						}`}
+					/>
 				))}
 			</div>
-			<div className="flex-1 flex flex-col gap-3">
-				<div className="relative h-16 rounded-lg bg-white/10 border border-white/10 overflow-hidden">
-					<div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" />
+
+			{/* Content */}
+			<div className="flex-1 flex flex-col gap-3 min-w-0">
+				{/* Header row */}
+				<div className="flex items-center justify-between">
+					<div className="h-2.5 w-24 rounded-full bg-white/25" />
+					<div className="flex items-center gap-1.5">
+						<span className="w-2 h-2 rounded-full bg-emerald-300 animate-pulse" />
+						<span className="h-2 w-10 rounded-full bg-white/20" />
+					</div>
 				</div>
+
+				{/* Stat cards */}
 				<div className="grid grid-cols-3 gap-2">
 					{[...Array(3)].map((_, i) => (
-						<div key={i} className="h-12 rounded-lg bg-white/10 border border-white/10" />
+						<div key={i} className="rounded-lg bg-white/10 border border-white/10 p-2 flex flex-col gap-1.5">
+							<span className="h-1.5 w-2/3 rounded-full bg-white/25" />
+							<span className="h-3 w-1/2 rounded bg-white/30" />
+						</div>
 					))}
 				</div>
-				<div className="h-3 w-3/4 rounded bg-white/10" />
-				<div className="h-3 w-1/2 rounded bg-white/10" />
+
+				{/* Analytics chart */}
+				<div className="relative flex-1 min-h-[64px] rounded-lg bg-white/5 border border-white/10 p-2 overflow-hidden">
+					<div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent animate-shimmer" />
+					<div className="relative h-full flex items-end justify-between gap-1.5">
+						{CHART_BARS.map((h, i) => (
+							<div
+								key={i}
+								className="animate-grow-bar flex-1 rounded-sm bg-gradient-to-t from-white/30 to-white/70"
+								style={{ height: `${h}%`, animationDelay: `${i * 90}ms` }}
+							/>
+						))}
+					</div>
+				</div>
 			</div>
 		</div>
 
 		{/* Title + tech icons */}
-		<div className="mt-5">
-			<div className="text-slate-100 text-lg md:text-xl font-bold">{title}</div>
-			<div className="flex flex-wrap gap-2 mt-3 text-2xl">
+		<div className="relative mt-3">
+			<div className="text-slate-100 text-base sm:text-lg font-bold truncate">{title}</div>
+			<div className="flex flex-wrap gap-1.5 mt-2 text-xl">
 				{tags.map((tag) => (
-					<span key={tag} className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-black/25 border border-white/10">
+					<span
+						key={tag}
+						className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-black/30 border border-white/10 transition-transform duration-300 hover:scale-110 hover:-translate-y-0.5"
+					>
 						{projectIconByTag(tag)}
 					</span>
 				))}
@@ -153,10 +195,10 @@ const ProjectShowcase = () => {
 					return (
 						<Reveal
 							key={index}
-							className="flex flex-col md:flex-row items-center group rounded-lg p-[2px] bg-gradient-to-r from-cyan-500 via-purple-500 to-emerald-500 bg-[length:400%_400%] animate-gradient-xy hover:bg-[length:100%_100%] shadow-lg"
+							className="flex flex-col md:flex-row items-center group rounded-lg p-[2px] bg-gradient-to-r from-blue-900/60 via-blue-600/50 to-slate-800/60 shadow-lg"
 						>
 							<div className="md:w-1/2 self-stretch overflow-hidden rounded-lg">
-								<ProjectMock title={project.title} tags={project.tags} accent={project.accent} />
+								<ProjectMock title={project.title} tags={project.tags} />
 							</div>
 
 							<Card className="md:w-1/2 bg-gradient-to-br from-slate-800 to-gray-900 rounded-lg overflow-hidden shadow-md transition-transform duration-500 group-hover:scale-105 group-hover:shadow-2xl p-6">
