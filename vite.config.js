@@ -12,13 +12,10 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        // Split heavy, independently-cacheable vendors into their own chunks
-        // so a change in app code doesn't bust the whole bundle.
+        // React is the only vendor code left and it changes far less often
+        // than the app, so it gets its own long-lived cache entry.
         manualChunks: {
-          "react-vendor": ["react", "react-dom", "react-router-dom"],
-          motion: ["framer-motion"],
-          prism: ["prismjs"],
-          "icon-cloud": ["react-icon-cloud"],
+          "react-vendor": ["react", "react-dom"],
         },
       },
     },
