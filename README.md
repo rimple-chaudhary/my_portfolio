@@ -3,7 +3,7 @@
 Personal portfolio of **Rimple Chaudhary**, Full-Stack Developer (MERN). A single
 scrolling page covering work, experience, skills and contact details.
 
-**Live:** <https://my-portfolio-cyan-six-98.vercel.app/>
+**Live:** <https://www.rimple-chaudhary.dev/>
 
 ---
 
