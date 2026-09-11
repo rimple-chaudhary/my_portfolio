@@ -1,214 +1,261 @@
-import { Mail, MapPin, Phone, Send } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { Mail, MapPin, Phone, Send, Github, Linkedin, Download, Loader2 } from "lucide-react";
+import { profile } from "../content";
+
+const EMPTY = { name: "", email: "", subject: "", message: "" };
+const WEB3FORMS_KEY = "fd606826-2494-4761-9dcb-a89040c97bda";
+
+const validate = (values) => {
+  const errors = {};
+  if (!values.name.trim()) errors.name = "Please enter your name.";
+  if (!values.email.trim()) errors.email = "Please enter your email.";
+  else if (!/^\S+@\S+\.\S+$/.test(values.email)) errors.email = "That email address doesn't look right.";
+  if (!values.subject.trim()) errors.subject = "Please add a subject.";
+  if (!values.message.trim()) errors.message = "Please write a message.";
+  return errors;
+};
+
+const FIELDS = [
+  { name: "name", label: "Name", type: "text", autoComplete: "name" },
+  { name: "email", label: "Email", type: "email", autoComplete: "email" },
+  { name: "subject", label: "Subject", type: "text" },
+];
 
 export default function Contact() {
-	const [formData, setFormData] = useState({
-		name: "",
-		email: "",
-		subject: "",
-		message: "",
-	});
+  const [values, setValues] = useState(EMPTY);
+  const [errors, setErrors] = useState({});
+  const [state, setState] = useState("idle"); // idle | sending | sent | error
+  const [message, setMessage] = useState("");
+  const formRef = useRef(null);
 
-	const [errors, setErrors] = useState({});
-	const [status, setStatus] = useState(null);
+  const update = (field) => (event) => {
+    setValues((prev) => ({ ...prev, [field]: event.target.value }));
+    // Clear the error as soon as the user starts fixing it.
+    setErrors((prev) => (prev[field] ? { ...prev, [field]: undefined } : prev));
+  };
 
-	const validateForm = () => {
-		let tempErrors = {};
-		let isValid = true;
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (state === "sending") return;
 
-		if (!formData.name.trim()) {
-			tempErrors.name = "Name is required";
-			isValid = false;
-		}
+    const found = validate(values);
+    if (Object.keys(found).length) {
+      setErrors(found);
+      setState("error");
+      setMessage("Please correct the highlighted fields.");
+      formRef.current?.querySelector(`[name="${Object.keys(found)[0]}"]`)?.focus();
+      return;
+    }
 
-		if (!formData.email.trim()) {
-			tempErrors.email = "Email is required";
-			isValid = false;
-		} else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-			tempErrors.email = "Email is invalid";
-			isValid = false;
-		}
+    setState("sending");
+    setMessage("");
 
-		if (!formData.subject.trim()) {
-			tempErrors.subject = "Subject is required";
-			isValid = false;
-		}
+    const payload = new FormData(formRef.current);
+    payload.append("access_key", WEB3FORMS_KEY);
 
-		if (!formData.message.trim()) {
-			tempErrors.message = "Message is required";
-			isValid = false;
-		}
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: payload,
+      });
+      const result = await response.json().catch(() => ({}));
 
-		setErrors(tempErrors);
-		return isValid;
-	};
+      if (response.ok && result.success) {
+        setState("sent");
+        setMessage("Thanks — your message is on its way. I usually reply within a day or two.");
+        setValues(EMPTY);
+        setErrors({});
+      } else {
+        setState("error");
+        setMessage(result.message || "That didn't send. Please email me directly instead.");
+      }
+    } catch {
+      setState("error");
+      setMessage("That didn't send — you may be offline. Please email me directly instead.");
+    }
+  };
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
+  const sending = state === "sending";
 
-		if (!validateForm()) {
-			setStatus("Please fill in all required fields correctly.");
-			return;
-		}
+  const fieldClass = (field) =>
+    `w-full rounded-lg border bg-white/[0.04] px-4 py-3 text-sm text-body placeholder:text-muted/60 transition-colors focus:border-accent focus:outline-none ${
+      errors[field] ? "border-red-500/70" : "border-hairline"
+    }`;
 
-		// Create a new FormData object to send to Web3Forms API
-		const form = new FormData();
-		form.append("access_key", "fd606826-2494-4761-9dcb-a89040c97bda");
-		form.append("name", formData.name);
-		form.append("email", formData.email);
-		form.append("subject", formData.subject || "New Contact Form Submission");
-		form.append("message", formData.message);
+  return (
+    <section id="contact" className="section border-t border-hairline bg-ink-raised">
+      <div className="shell">
+        <p className="t-eyebrow">Contact</p>
+        <h2 className="t-h2 mt-2">Get in touch</h2>
 
-		try {
-			// Send form data to Web3Forms API
-			const response = await fetch("https://api.web3forms.com/submit", {
-				method: "POST",
-				body: form,
-			});
+        <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <p className="t-lead max-w-md">
+              Hiring, or want to talk through a build? The fastest route is email — I read
+              everything and reply within a couple of days.
+            </p>
 
-			const result = await response.json();
+            <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent/10 px-4 py-2 text-sm font-medium text-accent">
+              <span className="h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
+              {profile.availability}
+            </p>
 
-			if (response.ok) {
-				setStatus("Message sent successfully!");
-				setFormData({
-					name: "",
-					email: "",
-					subject: "",
-					message: "",
-				});
-				setErrors({});
-			} else {
-				setStatus(result.message || "There was an error sending your message.");
-			}
-		} catch (error) {
-			setStatus("An error occurred. Please try again.");
-			console.error("Error:", error);
-		}
-	};
+            <ul className="mt-8 space-y-4">
+              <li>
+                <a
+                  href={`mailto:${profile.email}`}
+                  className="group flex items-center gap-4 text-body"
+                >
+                  <span className="rounded-lg bg-accent/10 p-3 text-accent">
+                    <Mail className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <span>
+                    <span className="block text-xs uppercase tracking-wide text-muted">Email</span>
+                    <span className="text-sm group-hover:text-accent">{profile.email}</span>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href={`tel:${profile.phoneHref}`} className="group flex items-center gap-4 text-body">
+                  <span className="rounded-lg bg-accent/10 p-3 text-accent">
+                    <Phone className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <span>
+                    <span className="block text-xs uppercase tracking-wide text-muted">Phone</span>
+                    <span className="text-sm group-hover:text-accent">{profile.phone}</span>
+                  </span>
+                </a>
+              </li>
+              <li className="flex items-center gap-4 text-body">
+                <span className="rounded-lg bg-accent/10 p-3 text-accent">
+                  <MapPin className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <span>
+                  <span className="block text-xs uppercase tracking-wide text-muted">Location</span>
+                  <span className="text-sm">{profile.location}</span>
+                </span>
+              </li>
+            </ul>
 
-	return (
-		<main
-			className="pt-20 lg:pt-[0rem] bg-gradient-to-b from-[#020617] via-[#0a0f1f] to-[#000D1A]/90
- text-white min-h-screen"
-		>
-			<section className="hero min-h-screen flex items-center relative px-4 sm:px-6 lg:px-8">
-				<div className="container mx-auto">
-					<div className="grid lg:grid-cols-2 gap-12 items-center">
-						{/* Contact Info */}
-						<div className="space-y-8">
-							<div>
-								<h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Get in Touch</h2>
-								<p className="text-gray-300 text-lg">Have a question or want to work together? Drop us a message!</p>
-							</div>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href={profile.resume}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-hairline bg-white/[0.04] px-4 py-2.5 text-sm font-semibold text-body transition-colors hover:bg-white/[0.09]"
+              >
+                <Download className="h-4 w-4" aria-hidden="true" />
+                Résumé
+              </a>
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-hairline bg-white/[0.04] px-4 py-2.5 text-sm font-semibold text-body transition-colors hover:bg-white/[0.09]"
+              >
+                <Github className="h-4 w-4" aria-hidden="true" />
+                GitHub
+              </a>
+              <a
+                href={profile.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-hairline bg-white/[0.04] px-4 py-2.5 text-sm font-semibold text-body transition-colors hover:bg-white/[0.09]"
+              >
+                <Linkedin className="h-4 w-4" aria-hidden="true" />
+                LinkedIn
+              </a>
+            </div>
+          </div>
 
-							<div className="space-y-6">
-								<div className="flex items-center space-x-4">
-									<div className="bg-purple-500/10 p-3 rounded-lg">
-										<Mail className="w-6 h-6 text-purple-400" />
-									</div>
-									<div>
-										<h3 className="font-semibold">Email</h3>
-										<p className="text-gray-400">rimplechaudhary1@gmail.com</p>
-									</div>
-								</div>
+          <form ref={formRef} onSubmit={handleSubmit} noValidate className="card p-6 md:p-8">
+            {/* Honeypot: bots fill this, people never see it. */}
+            <input
+              type="text"
+              name="botcheck"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="sr-only"
+            />
 
-								<div className="flex items-center space-x-4">
-									<div className="bg-pink-500/10 p-3 rounded-lg">
-										<MapPin className="w-6 h-6 text-pink-400" />
-									</div>
-									<div>
-										<h3 className="font-semibold">Location</h3>
-										<p className="text-gray-400">Mohali,Punjab</p>
-									</div>
-								</div>
-								<div className="flex items-center space-x-4">
-									<div className="bg-blue-500/10 p-3 rounded-lg">
-										<Phone className="w-6 h-6 text-blue-400" />
-									</div>
-									<div>
-										<h3 className="font-semibold">Contact</h3>
-										<p className="text-gray-400">+91 8894319767</p>
-									</div>
-								</div>
-							</div>
-						</div>
+            <div className="space-y-5">
+              {FIELDS.map(({ name, label, type, autoComplete }) => (
+                <div key={name}>
+                  <label htmlFor={name} className="mb-1.5 block text-sm font-medium text-body">
+                    {label}
+                  </label>
+                  <input
+                    id={name}
+                    name={name}
+                    type={type}
+                    autoComplete={autoComplete}
+                    value={values[name]}
+                    onChange={update(name)}
+                    aria-invalid={Boolean(errors[name])}
+                    aria-describedby={errors[name] ? `${name}-error` : undefined}
+                    className={fieldClass(name)}
+                  />
+                  {errors[name] && (
+                    <p id={`${name}-error`} className="mt-1.5 text-sm text-red-400">
+                      {errors[name]}
+                    </p>
+                  )}
+                </div>
+              ))}
 
-						{/* Contact Form */}
-						<div className="backdrop-blur-lg bg-white/5 p-8 rounded-2xl shadow-xl">
-							<form onSubmit={handleSubmit} className="space-y-6">
-								<div className="grid grid-cols-1 gap-6">
-									<div>
-										<input
-											type="text"
-											placeholder="Your Name"
-											className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
-												errors.name ? "border-red-500" : "border-gray-700"
-											} focus:border-blue-500 focus:outline-none transition-colors`}
-											value={formData.name}
-											onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-										/>
-										{errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
-									</div>
+              <div>
+                <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-body">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={5}
+                  value={values.message}
+                  onChange={update("message")}
+                  aria-invalid={Boolean(errors.message)}
+                  aria-describedby={errors.message ? "message-error" : undefined}
+                  className={`${fieldClass("message")} resize-y`}
+                />
+                {errors.message && (
+                  <p id="message-error" className="mt-1.5 text-sm text-red-400">
+                    {errors.message}
+                  </p>
+                )}
+              </div>
+            </div>
 
-									<div>
-										<input
-											type="email"
-											placeholder="Your Email"
-											className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
-												errors.email ? "border-red-500" : "border-gray-700"
-											} focus:border-blue-500 focus:outline-none transition-colors`}
-											value={formData.email}
-											onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-										/>
-										{errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
-									</div>
+            <button
+              type="submit"
+              disabled={sending}
+              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-[#04121a] transition-colors hover:bg-accent-strong disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {sending ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                  Sending…
+                </>
+              ) : (
+                <>
+                  Send message
+                  <Send className="h-4 w-4" aria-hidden="true" />
+                </>
+              )}
+            </button>
 
-									<div>
-										<input
-											type="text"
-											placeholder="Subject"
-											className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
-												errors.subject ? "border-red-500" : "border-gray-700"
-											} focus:border-blue-500 focus:outline-none transition-colors`}
-											value={formData.subject}
-											onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-										/>
-										{errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
-									</div>
-
-									<div>
-										<textarea
-											placeholder="Your Message"
-											rows="4"
-											className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
-												errors.message ? "border-red-500" : "border-gray-700"
-											} focus:border-blue-500 focus:outline-none transition-colors resize-none`}
-											value={formData.message}
-											onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-										></textarea>
-										{errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
-									</div>
-								</div>
-
-								<button
-									type="submit"
-									className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-3 px-6 rounded-lg font-semibold flex items-center justify-center space-x-2 hover:opacity-90 transition-opacity"
-								>
-									<span>Send Message</span>
-									<Send className="w-4 h-4" />
-								</button>
-							</form>
-
-							{/* Status Message */}
-							{status && (
-								<div className={`mt-4 text-center ${status.includes("success") ? "text-green-400" : "text-red-400"}`}>
-									<p>{status}</p>
-								</div>
-							)}
-						</div>
-					</div>
-				</div>
-			</section>
-		</main>
-	);
+            <p
+              role="status"
+              aria-live="polite"
+              className={`mt-4 min-h-[1.25rem] text-sm ${
+                state === "sent" ? "text-accent" : "text-red-400"
+              }`}
+            >
+              {message}
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  );
 }
