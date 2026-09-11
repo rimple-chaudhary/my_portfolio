@@ -1,140 +1,56 @@
-import React from "react";
-import { Code2, Trophy, Cpu } from "lucide-react";
+import { Trophy } from "lucide-react";
 import Reveal from "./ui/Reveal";
+import { experience } from "../content";
 
-const ExperienceCard = ({ title, company, period, description, icon: Icon, badge, projects = [] }) => {
-	const bulletPoints = Array.isArray(description) ? description : [description].filter(Boolean);
+export default function Experience() {
+  return (
+    <section id="experience" className="section border-t border-hairline bg-ink-raised">
+      <div className="shell">
+        <p className="t-eyebrow">Experience</p>
+        <h2 className="t-h2 mt-2">Where I&rsquo;ve worked</h2>
 
-	return (
-		<div className="group relative overflow-hidden transform hover:-translate-y-2 transition-all duration-300">
-			<div className="absolute inset-0 backdrop-blur-lg bg-white/5 rounded-lg" />
-			<div className="absolute -inset-[2px] bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-lg opacity-0 group-hover:opacity-100 animate-gradient-xy transition-all duration-500" />
+        <ol className="mt-10 space-y-5">
+          {experience.map((role, index) => (
+            <Reveal key={role.company} as="li" delay={index * 80} className="card p-6 md:p-8">
+              <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                <h3 className="t-h3 text-body">
+                  {role.role}
+                  <span className="font-normal text-muted"> · {role.company}</span>
+                </h3>
+                <span className="font-mono text-xs text-muted">{role.period}</span>
+              </div>
 
-			<div className="relative bg-gray-900/90 rounded-lg p-8 h-full border border-gray-800/50 shadow-xl backdrop-blur-xl">
-				<div className="relative mb-6">
-					<div className="absolute -inset-4 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-25 rounded-full blur-xl group-hover:opacity-75 animate-pulse transition-all duration-500" />
-					<Icon className="w-12 h-12 text-cyan-400 relative z-10 transform group-hover:rotate-12 transition-transform duration-300" />
-				</div>
+              <p className="mt-1 text-sm text-muted">{role.location}</p>
 
-				<div className="space-y-3">
-					<h3 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">{title}</h3>
-					<div className="flex flex-wrap justify-between gap-3 items-center text-gray-300">
-						<span className="font-semibold text-blue-400">{company}</span>
-						<span className="text-sm font-mono bg-blue-500/10 px-3 py-1 rounded-full">{period}</span>
-					</div>
+              {role.award && (
+                <p className="mt-4 inline-flex items-center gap-2 rounded-full border border-award/25 bg-award/10 px-3 py-1 text-xs font-semibold text-award">
+                  <Trophy className="h-3.5 w-3.5" aria-hidden="true" />
+                  {role.award}
+                </p>
+              )}
 
-					{badge && (
-						<span className="inline-flex items-center gap-2 text-xs font-semibold tracking-wide rounded-full bg-yellow-500/15 border border-yellow-400/30 text-yellow-300 px-3 py-1 mt-3">
-							<Trophy className="w-3.5 h-3.5" />
-							{badge}
-						</span>
-					)}
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {role.clients.map((client) => (
+                  <li
+                    key={client}
+                    className="rounded-full border border-accent/20 bg-accent/[0.07] px-3 py-1 text-xs font-medium text-accent"
+                  >
+                    {client}
+                  </li>
+                ))}
+              </ul>
 
-					{projects.length > 0 && (
-						<div className="flex flex-wrap gap-2 pt-4">
-							{projects.map((project) => (
-								<span
-									key={project}
-									className="text-xs font-medium text-cyan-200 bg-cyan-900/30 border border-cyan-700/50 px-3 py-1 rounded-full"
-								>
-									{project}
-								</span>
-							))}
-						</div>
-					)}
-
-					<ul className="text-gray-300 border-l-4 border-blue-500/50 pl-4 mt-4 leading-relaxed space-y-2 list-disc">
-						{bulletPoints.map((item, index) => (
-							<li key={index}>{item}</li>
-						))}
-					</ul>
-				</div>
-
-				<div className="absolute top-4 right-4 w-20 h-20">
-					<div className="absolute top-0 right-0 w-6 h-[2px] bg-cyan-500/50" />
-					<div className="absolute top-0 right-0 w-[2px] h-6 bg-cyan-500/50" />
-				</div>
-				<div className="absolute bottom-4 left-4 w-20 h-20">
-					<div className="absolute bottom-0 left-0 w-6 h-[2px] bg-purple-500/50" />
-					<div className="absolute bottom-0 left-0 w-[2px] h-6 bg-purple-500/50" />
-				</div>
-			</div>
-		</div>
-	);
-};
-
-const ExperienceSection = () => {
-	const experiences = [
-		{
-			icon: Cpu,
-			title: "Software Developer",
-			company: "Technogetic Pvt. Ltd.",
-			period: "Nov 2023 – Present",
-			badge: "Employee of the Year 2024",
-			projects: ["EMAAR India", "MaxLife Insurance", "GBP Automation & AI SEO"],
-			description: [
-				"Architected a reusable React component library of 20+ components adopted across 5 enterprise applications, accelerating development velocity by 30%.",
-				"Shipped customer-facing portals for EMAAR India and MaxLife Insurance with React, TypeScript, Redux and React Query, serving 10,000+ end users in production.",
-				"Engineered a multi-step DigiLocker/Aadhaar identity verification workflow processing 500+ verifications monthly, securing credentials via AWS Secrets Manager.",
-				"Improved page load time by 40% via React.lazy code splitting, SWR caching and skeleton loaders, achieving 90+ Lighthouse scores, and cut redundant API calls by 30%.",
-				"Built AI-driven Google Business Profile automation with n8n, LangChain and LangGraph, generating SEO content and keyword recommendations for business accounts.",
-			],
-		},
-		{
-			icon: Code2,
-			title: "Frontend Developer Intern",
-			company: "Innow8 Apps",
-			period: "Apr 2023 – Oct 2023",
-			projects: ["TaxZap (PWA)"],
-			description: [
-				"Built 15+ responsive, mobile-first UI components and integrated 3 third-party APIs (payment, analytics, notifications) for the TaxZap progressive web app.",
-				"Boosted user engagement by 15% through Lottie animations, real-time form validation and an accessible Ant Design UI.",
-				"Collaborated with 2 backend engineers to ensure seamless data flow and predictable user journeys.",
-			],
-		},
-	];
-
-	return (
-		<>
-			<div className="min-h-screen bg-gradient-to-b relative overflow-hidden pt-32 pb-20">
-				<div className="absolute inset-0 bg-gradient-to-b from-[#020617] via-[#0a0f1f] to-[#000D1A]/90" />
-				<div className="absolute inset-0">
-					{[...Array(20)].map((_, i) => (
-						<div
-							key={i}
-							className="absolute w-2 h-2 bg-blue-500/20 rounded-full animate-float"
-							style={{
-								top: `${Math.random() * 100}%`,
-								left: `${Math.random() * 100}%`,
-								animationDelay: `${Math.random() * 5}s`,
-							}}
-						/>
-					))}
-				</div>
-
-				<div className="relative container mx-auto px-6 mt-10">
-					<div className="flex flex-col items-center space-y-8 mb-20">
-						<div className="relative">
-							<h2 className="text-5xl md:text-7xl font-black text-transparent bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text text-center">Professional Journey</h2>
-							<div className="absolute inset-0 -z-10 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 blur-3xl rounded-full" />
-						</div>
-						<p className="text-lg md:text-xl text-gray-400 font-medium tracking-wide text-center max-w-2xl">"Transforming ideas into digital reality, one project at a time"</p>
-					</div>
-
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 max-w-7xl mx-auto">
-						{experiences.map((exp, index) => (
-							<Reveal key={index} delay={index * 120} className="h-full">
-								<ExperienceCard {...exp} />
-							</Reveal>
-						))}
-					</div>
-				</div>
-
-				<div className="absolute top-20 left-20 w-96 h-96 bg-cyan-500/10 rounded-full filter blur-3xl animate-pulse" />
-				<div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full filter blur-3xl animate-pulse delay-1000" />
-			</div>
-		</>
-	);
-};
-
-export default ExperienceSection;
+              <ul className="mt-6 space-y-2.5 border-l border-accent/30 pl-5">
+                {role.points.map((point) => (
+                  <li key={point.slice(0, 32)} className="t-body">
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}

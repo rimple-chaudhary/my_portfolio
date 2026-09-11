@@ -1,176 +1,106 @@
-# Portfolio Website
+# Rimple Chaudhary — Portfolio
 
-<div align="center">
-  <pre>
-    _____           _    __      _ _       
-   |  __ \         | |  / _|    | (_)      
-   | |__) |__  _ __| |_| |_ ___ | |_  ___  
-   |  ___/ _ \| '__| __|  _/ _ \| | |/ _ \ 
-   | |  | (_) | |  | |_| || (_) | | | (_) |
-   |_|   \___/|_|   \__|_| \___/|_|_|\___/ 
-  </pre>
-</div>
+Personal portfolio of **Rimple Chaudhary**, Full-Stack Developer (MERN). A single
+scrolling page covering work, experience, skills and contact details.
 
-Welcome to my **portfolio website**! This site showcases my skills, experience, education, projects, and how to get in touch with me. It's built with **React** and **Vite** for a fast, modern web experience. You can explore my work, learn about my journey, and contact me directly.
+**Live:** <https://my-portfolio-cyan-six-98.vercel.app/>
 
 ---
 
-## Live Preview
+## Stack
 
-Check out the live portfolio here:  
-[**Live Demo → my-portfolio-cyan-six-98.vercel.app**](https://my-portfolio-cyan-six-98.vercel.app/)
+| | |
+|---|---|
+| Framework | React 18 |
+| Build | Vite 6 |
+| Styling | Tailwind CSS 3 + CSS custom properties |
+| Icons | lucide-react |
+| Typeface | Inter Variable, self-hosted (latin subset) |
+| Forms | Web3Forms |
+| Hosting | Vercel |
 
----
+Three runtime dependencies in total. There is no router, no animation library and no
+syntax-highlighting library — the scroll reveal, role rotator, grid backdrop and code
+highlighting are all handled in-repo.
 
-### 🎯 Project Structure
+## Lighthouse
 
-```bash
-portfolio/
-├── node_modules/
-├── public/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   │   ├── ui/
-│   │   │   ├── Reusable Components/
-│   │   │   │   ├── badge.jsx
-│   │   │   │   ├── button.jsx
-│   │   │   │   ├── card.jsx
-│   │   │   │   ├── EducationLoader.jsx
-│   │   │   │   ├── evervault-card.jsx
-│   │   │   │   ├── flip-words.jsx
-│   │   │   │   ├── icon-cloud.jsx
-│   │   │   │   ├── meteors.jsx
-│   │   │   │   ├── sparkles-text.jsx
-│   │   │   │   └── tooltip.jsx
-│   │   │   │
-│   │   │   ├── Main Components/
-│   │   │   │   ├── AnimatedGrid.jsx
-│   │   │   │   ├── Contact.jsx
-│   │   │   │   ├── Education.jsx
-│   │   │   │   ├── enhanced-portfolio-card.jsx
-│   │   │   │   ├── Experience.jsx
-│   │   │   │   ├── global.jsx
-│   │   │   │   ├── Header.jsx
-│   │   │   │   ├── Hero.jsx
-│   │   │   │   ├── Home.jsx
-│   │   │   │   ├── PortfolioPage.jsx
-│   │   │   │   ├── Projects.jsx
-│   │   │   │   └── Skills.jsx
-│   │   └── lib/
-│   ├── App.jsx
-│   └── main.jsx
-├── Configuration Files/
-│   ├── .eslintrc.js
-│   ├── .gitignore
-│   ├── components.json
-│   ├── index.html
-│   ├── jsconfig.json
-│   ├── package-lock.json
-│   ├── package.json
-│   ├── postcss.config.js
-│   ├── README.md
-│   ├── tailwind.config.js
-    └── vite.config.js
+Measured against the production build served with gzip.
 
+| | Performance | Accessibility | Best practices | SEO |
+|---|---|---|---|---|
+| Mobile | 99 | 100 | 100 | 100 |
+| Desktop | 100 | 100 | 100 | 100 |
+
+LCP 1.8 s · CLS 0 · TBT 10 ms (mobile, throttled).
+
+## Structure
 
 ```
+.
+├── index.html              # Meta, Open Graph, JSON-LD, font preload
+├── vercel.json             # Legacy /route → /#anchor redirects, cache headers
+├── public/
+│   ├── 404.html            # Static branded 404 (real 404 status, not a soft 404)
+│   ├── fonts/              # inter-var-latin.woff2
+│   ├── files/resume.pdf
+│   ├── og-image.jpg        # 1200×630 social card
+│   ├── robots.txt
+│   └── sitemap.xml
+└── src/
+    ├── main.jsx
+    ├── App.jsx             # Composes the single page
+    ├── content.js          # All copy and data — edit here, not in components
+    ├── assets/
+    │   ├── css/index.css   # Tokens, type scale, animations
+    │   └── images/         # profile-320.webp, profile-640.webp
+    └── components/
+        ├── Header.jsx      # Anchor nav + active-section observer
+        ├── Hero.jsx
+        ├── About.jsx
+        ├── Skills.jsx
+        ├── Experience.jsx
+        ├── Projects.jsx
+        ├── Contact.jsx
+        ├── Footer.jsx
+        └── ui/
+            ├── CodeBlock.jsx  # Static highlighter, no dependency
+            └── Reveal.jsx     # IntersectionObserver scroll reveal
+```
 
----
+### Editing content
 
-## Sections of the Portfolio
+Everything on the page — headline, about copy, skills, roles, projects, contact
+details — lives in [`src/content.js`](src/content.js). Components read from it and
+render; they contain no copy of their own.
 
-The portfolio website consists of the following sections:
+## Running locally
 
-- **Home**: Introduction and a brief overview.
-- **Skills**: A detailed list of my technical skills.
-- **Experience**: My professional journey and work experience.
-- **Education**: Academic background and certifications.
-- **Projects**: A showcase of the projects I've worked on.
-- **Contact**: Information on how to reach out to me.
-
----
-
-## 💻 Technologies Used
-
-- **Frontend:** React.js with Vite
-- **Styling:** Tailwind CSS
-- **Animations:** Framer Motion
-- **Icons:** React Icons
-- **Deployment:** Vercel
-
----
-
-## Installation ⬇️
-
-You will need to download **Git** and **Node** to run this project.
-
-### Git
-
-- Download and install Git from the official website: [Git Downloads](https://git-scm.com/)
-- Verify the installation:
-     ```bash
-     git --version
-     ```
-
-### Node
-
-- Download and install Node.js from the official website: [Node.js Downloads](https://nodejs.org/)
-- Make sure you have the latest version of both Git and Node on your computer.
-- Verify the installation:
-     ```bash
-     node --version
-     ```
-
-# Getting Started 🎯
-
-### Fork and Clone the Repository 🚀
-
-1. Click the **Fork** button at the top-right corner of the page to create your own copy of the repository.
-2. After forking, open your terminal and run the following commands to clone the repo:
+Requires Node 18+.
 
 ```bash
 git clone https://github.com/rimple-chaudhary/my_portfolio
-```
-
-Navigate to the Project Directory 📂
-Once the repository is cloned, change your directory to the project folder:
-
-```bash
 cd my_portfolio
-```
-
-Install Dependencies ⚙️
-From the root directory of your project, install the necessary packages:
-
-```bash
 npm install
+npm run dev      # http://localhost:5173
 ```
 
-Run the Development Server 🚀
-Start the development server to see your project live:
+| Script | Does |
+|---|---|
+| `npm run dev` | Start the dev server |
+| `npm run build` | Production build to `dist/` |
+| `npm run preview` | Serve the production build locally |
+| `npm run lint` | ESLint over `src/` and config files |
 
-```bash
-npm run dev
-```
+## Accessibility notes
 
-View the Project 🌐
-Open your browser and visit http://localhost:5173/ to see the result! 🎉
+- One `<h1>`, one `<h2>` per section, semantic `<h3>` headings inside cards.
+- Skip-to-content link, visible focus rings on every interactive element.
+- Mobile menu closes on Escape and outside click, and returns focus to its toggle.
+- `prefers-reduced-motion` disables every animation and forces revealed content visible.
+- Contact form: labelled fields, `aria-invalid`, inline errors, live status region,
+  and focus moved to the first invalid field on submit.
 
-## 📝 License
+## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
-### 🤝 Contributing
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-<div align="center"> Made with ❤️ by Rimple Chaudhary </div>
+MIT — see [LICENSE](LICENSE).
