@@ -208,7 +208,7 @@ export const projects = [
       "Built real-time data modules with WebSocket integration, cutting dashboard refresh latency by 50%.",
     ],
     outcomes: ["10-step filing flow", "15+ UI components", "−50% refresh latency"],
-    link: { href: "https://taxzapp.ie/", label: "Live product" },
+    access: "Internship project — no public URL.",
   },
   {
     title: "TechEx — Agency Site & Headless CMS",
