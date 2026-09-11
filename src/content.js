@@ -210,6 +210,21 @@ export const projects = [
     outcomes: ["10-step filing flow", "15+ UI components", "−50% refresh latency"],
     link: { href: "https://taxzapp.ie/", label: "Live product" },
   },
+  {
+    title: "TechEx — Agency Site & Headless CMS",
+    context:
+      "Agency site with a custom content platform behind it, so the content team can publish pages, case studies and media without a third-party CMS vendor.",
+    stack: ["Next.js 14", "TypeScript", "MongoDB", "Mongoose", "NextAuth", "Zod", "AWS S3"],
+    points: [
+      "Built a custom headless CMS on MongoDB with Mongoose data models and Next.js API routes, letting the content team publish pages, case studies and media without a third-party CMS vendor.",
+      "Implemented a draft/publish workflow with live preview that renders drafts through the production template, so editors review the real page before publishing.",
+      "Added authentication with NextAuth and role-based access across CMS routes, with Zod request validation.",
+      "Built a media library with presigned uploads to S3-compatible object storage using the AWS S3 SDK.",
+      "Kept most of the interface in React Server Components and served the public site through static generation with incremental revalidation.",
+    ],
+    outcomes: ["Lighthouse 60 → 93", "No CMS vendor", "Draft/publish with live preview"],
+    link: { href: "https://shopify-agency-site.vercel.app/", label: "Visit site" },
+  },
 ];
 
 export const sections = [
