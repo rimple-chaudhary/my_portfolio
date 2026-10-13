@@ -131,19 +131,27 @@ export const skillGroups = [
 
 export const experience = [
   {
-    role: "Software Developer",
+    role: "Senior Software Engineer",
     company: "Technogetic Pvt. Ltd.",
     location: "Mohali, India",
-    period: "Nov 2023 – Present",
-    award: "Employee of the Year 2024",
+    period: "Mar 2026 – Present",
     clients: ["TechEx", "EMAAR India", "MaxLife Insurance"],
     points: [
-      "Build REST APIs in Node.js and Express with JWT authentication, and integrate AWS and third-party services, including multi-step DigiLocker and Aadhaar verification processing 500+ verifications a month.",
-      "Build responsive, cross-browser portals and dashboards in React and Next.js serving 10,000+ end users, using Redux and React Query for application state and server data.",
-      "Cut page load time by 40% with React.lazy code splitting and SWR caching, reaching a 90+ Lighthouse performance score.",
       "Write unit and component tests with Jest and React Testing Library, deploy Next.js applications on Vercel, and debug and resolve production issues across frontend and backend.",
       "Built an n8n AI chatbot for an astrology client, using Gemini with Pinecone RAG and MongoDB memory, that answers visitor queries in English and Hinglish and automatically routes qualified leads to the client's CRM.",
       "Mentored two junior developers on the EMAAR India portal and reviewed their pull requests, keeping TypeScript types, component structure and data-fetching patterns consistent across the codebase.",
+    ],
+  },
+  {
+    role: "Junior Software Developer",
+    company: "Technogetic Pvt. Ltd.",
+    location: "Mohali, India",
+    period: "Nov 2023 – Feb 2026",
+    award: "Employee of the Year 2024",
+    points: [
+      "Built REST APIs in Node.js and Express with JWT authentication, and integrated AWS and third-party services, including multi-step DigiLocker and Aadhaar verification processing 500+ verifications a month.",
+      "Built responsive, cross-browser portals and dashboards in React and Next.js serving 10,000+ end users, using Redux and React Query for application state and server data.",
+      "Cut page load time by 40% with React.lazy code splitting and SWR caching, reaching a 90+ Lighthouse performance score.",
     ],
   },
   {

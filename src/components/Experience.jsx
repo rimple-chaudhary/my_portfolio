@@ -11,7 +11,7 @@ export default function Experience() {
 
         <ol className="mt-10 space-y-5">
           {experience.map((role, index) => (
-            <Reveal key={role.company} as="li" delay={index * 80} className="card p-6 md:p-8">
+            <Reveal key={`${role.company}-${role.period}`} as="li" delay={index * 80} className="card p-6 md:p-8">
               <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
                 <h3 className="t-h3 text-body">
                   {role.role}
@@ -29,16 +29,18 @@ export default function Experience() {
                 </p>
               )}
 
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {role.clients.map((client) => (
-                  <li
-                    key={client}
-                    className="rounded-full border border-accent/20 bg-accent/[0.07] px-3 py-1 text-xs font-medium text-accent"
-                  >
-                    {client}
-                  </li>
-                ))}
-              </ul>
+              {role.clients?.length > 0 && (
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {role.clients.map((client) => (
+                    <li
+                      key={client}
+                      className="rounded-full border border-accent/20 bg-accent/[0.07] px-3 py-1 text-xs font-medium text-accent"
+                    >
+                      {client}
+                    </li>
+                  ))}
+                </ul>
+              )}
 
               <ul className="mt-6 space-y-2.5 border-l border-accent/30 pl-5">
                 {role.points.map((point) => (
