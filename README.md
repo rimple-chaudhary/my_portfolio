@@ -1,7 +1,7 @@
 # Rimple Chaudhary — Portfolio
 
-Personal portfolio of **Rimple Chaudhary**, Full-Stack Developer (MERN). A single
-scrolling page covering work, experience, skills and contact details.
+Personal portfolio of **Rimple Chaudhary**, Full-Stack Software Engineer. A single
+scrolling page covering work, experience, skills, education and contact details.
 
 **Live:** <https://my-portfolio-cyan-six-98.vercel.app/>
 
@@ -61,6 +61,7 @@ LCP 1.8 s · CLS 0 · TBT 10 ms (mobile, throttled).
         ├── Skills.jsx
         ├── Experience.jsx
         ├── Projects.jsx
+        ├── Education.jsx   # Degrees + certifications
         ├── Contact.jsx
         ├── Footer.jsx
         └── ui/
@@ -70,7 +71,7 @@ LCP 1.8 s · CLS 0 · TBT 10 ms (mobile, throttled).
 
 ### Editing content
 
-Everything on the page — headline, about copy, skills, roles, projects, contact
+Everything on the page — headline, about copy, skills, roles, projects, education, contact
 details — lives in [`src/content.js`](src/content.js). Components read from it and
 render; they contain no copy of their own.
 
