@@ -4,7 +4,7 @@
     { "source": "/experience", "destination": "/#experience", "permanent": true },
     { "source": "/projects", "destination": "/#projects", "permanent": true },
     { "source": "/contact", "destination": "/#contact", "permanent": true },
-    { "source": "/education", "destination": "/#about", "permanent": true }
+    { "source": "/education", "destination": "/#education", "permanent": true }
   ],
   "headers": [
     {
