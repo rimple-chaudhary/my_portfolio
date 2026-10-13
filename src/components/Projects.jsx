@@ -23,6 +23,9 @@ export default function Projects() {
               {project.featured && <p className="t-eyebrow">Featured</p>}
 
               <h3 className="t-h3 mt-2 text-body">{project.title}</h3>
+              {project.period && (
+                <p className="mt-1 font-mono text-xs text-muted">{project.period}</p>
+              )}
               <p className="t-body mt-3">{project.context}</p>
 
               <ul className="mt-5 space-y-2.5 border-l border-accent/30 pl-5">
