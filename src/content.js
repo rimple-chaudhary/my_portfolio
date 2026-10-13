@@ -3,16 +3,16 @@
 
 export const profile = {
   name: "Rimple Chaudhary",
-  title: "Full-Stack Developer",
-  stack: "MERN Stack",
+  title: "Full-Stack Software Engineer",
+  stack: "React · Next.js · TypeScript · Node.js",
   roles: [
-    "Full-Stack Developer",
+    "Full-Stack Software Engineer",
     "React & Next.js Engineer",
     "Node, Express & MongoDB",
     "AI Automation Builder",
   ],
   lead:
-    "I build enterprise web platforms end to end — React and Next.js on the front, Node, Express and MongoDB behind them. Three years shipping customer-facing portals for EMAAR India and MaxLife Insurance.",
+    "I build production platforms end to end — React and Next.js on the front, Node.js, Express, MongoDB and MySQL behind them. 3+ years shipping customer-facing portals for EMAAR India and MaxLife Insurance.",
   award: "Employee of the Year 2024 · Technogetic",
   location: "Mohali, India",
   email: "rimplechaudhary1@gmail.com",
@@ -21,21 +21,21 @@ export const profile = {
   github: "https://github.com/rimple-chaudhary",
   linkedin: "https://www.linkedin.com/in/rimple-chaudhary-22339a175/",
   resume: "/files/resume.pdf",
-  availability: "Open to Full-Stack / MERN roles — Mohali, hybrid or remote",
+  availability: "Open to Full-Stack Software Engineer roles — Mohali, hybrid or remote",
   languages: "English (professional) · Hindi (native) · Punjabi (native)",
 };
 
 export const stats = [
-  { value: "3 yrs", label: "Building for production" },
+  { value: "3+ yrs", label: "Building for production" },
   { value: "10,000+", label: "End users served" },
   { value: "500+", label: "ID verifications / month" },
   { value: "90+", label: "Lighthouse performance" },
 ];
 
 export const about = [
-  "Full-Stack Developer with three years building enterprise-grade web platforms end to end. On the front I work in React, Next.js (App Router) and TypeScript; behind them in Node.js, Express and MongoDB with Mongoose — writing REST APIs and integrating third-party services into client platforms.",
-  "Most of that work has been customer-facing. I've shipped portals for EMAAR India and MaxLife Insurance serving 10,000+ end users, including a multi-step DigiLocker and Aadhaar identity verification flow that processes 500+ verifications a month with credentials held in AWS Secrets Manager. I've also built a custom headless CMS on MongoDB — Mongoose data models, authenticated API routes, Zod request validation and presigned media uploads — so a content team can publish without a third-party vendor.",
-  "Recognised as Employee of the Year 2024 at Technogetic for ownership, technical depth and cross-functional delivery.",
+  "Full-Stack Software Engineer with 3+ years building production platforms for enterprise clients. On the front I work in React, Next.js (App Router) and TypeScript; behind them in Node.js and Express with MongoDB and MySQL — writing REST APIs with JWT authentication and integrating AWS and third-party services.",
+  "Most of that work has been customer-facing. I've shipped portals for EMAAR India and MaxLife Insurance serving 10,000+ end users, and I'm trusted with security-sensitive flows such as a multi-step DigiLocker and Aadhaar identity verification that processes 500+ verifications a month. I focus on measurable results: 40% faster page loads, a 25% lift in form completion, and a CMS platform built end to end.",
+  "I mentor junior engineers and lead code reviews on the EMAAR India portal to keep code quality high before production delivery. Recognised as Employee of the Year 2024 at Technogetic.",
 ];
 
 export const skillGroups = [
@@ -43,7 +43,7 @@ export const skillGroups = [
     title: "Frontend",
     icon: "layout",
     items: [
-      "React.js",
+      "React.js (Hooks, Context API)",
       "Next.js (App Router)",
       "TypeScript",
       "JavaScript (ES6+)",
@@ -58,10 +58,11 @@ export const skillGroups = [
     items: [
       "Node.js",
       "Express",
-      "REST API design",
+      "REST APIs",
       "MongoDB",
       "Mongoose",
-      "SQL",
+      "MySQL",
+      "JWT",
       "NextAuth",
       "Zod",
     ],
@@ -82,7 +83,7 @@ export const skillGroups = [
   {
     title: "Cloud & Storage",
     icon: "cloud",
-    items: ["AWS S3", "AWS Secrets Manager", "Vercel", "Docker", "CI/CD"],
+    items: ["AWS S3", "AWS Secrets Manager", "S3-compatible object storage", "Vercel", "CI/CD"],
   },
   {
     title: "Integrations & CMS",
@@ -116,7 +117,15 @@ export const skillGroups = [
   {
     title: "AI & Automation",
     icon: "bot",
-    items: ["LangChain", "LangGraph", "n8n", "Claude Code", "GitHub Copilot"],
+    items: [
+      "n8n",
+      "Gemini API",
+      "Pinecone (RAG)",
+      "LangChain",
+      "LangGraph",
+      "Claude Code",
+      "GitHub Copilot",
+    ],
   },
 ];
 
@@ -127,23 +136,24 @@ export const experience = [
     location: "Mohali, India",
     period: "Nov 2023 – Present",
     award: "Employee of the Year 2024",
-    clients: ["EMAAR India", "MaxLife Insurance", "GBP Automation & AI SEO"],
+    clients: ["TechEx", "EMAAR India", "MaxLife Insurance"],
     points: [
-      "Build REST APIs with Node.js and Express, and integrate third-party services into enterprise client platforms.",
-      "Integrate REST APIs and AWS services into customer-facing portals, including multi-step DigiLocker and Aadhaar identity verification processing 500+ verifications a month.",
-      "Build portals and dashboards in React and Next.js serving 10,000+ end users, using Redux and React Query for application state and server data.",
+      "Build REST APIs in Node.js and Express with JWT authentication, and integrate AWS and third-party services, including multi-step DigiLocker and Aadhaar verification processing 500+ verifications a month.",
+      "Build responsive, cross-browser portals and dashboards in React and Next.js serving 10,000+ end users, using Redux and React Query for application state and server data.",
       "Cut page load time by 40% with React.lazy code splitting and SWR caching, reaching a 90+ Lighthouse performance score.",
-      "Build AI-driven Google Business Profile automation with n8n, LangChain and LangGraph, generating SEO content and keyword recommendations for business accounts.",
+      "Write unit and component tests with Jest and React Testing Library, deploy Next.js applications on Vercel, and debug and resolve production issues across frontend and backend.",
+      "Built an n8n AI chatbot for an astrology client, using Gemini with Pinecone RAG and MongoDB memory, that answers visitor queries in English and Hinglish and automatically routes qualified leads to the client's CRM.",
+      "Mentored two junior developers on the EMAAR India portal and reviewed their pull requests, keeping TypeScript types, component structure and data-fetching patterns consistent across the codebase.",
     ],
   },
   {
     role: "Software Developer Intern",
     company: "Innow8 Apps",
-    location: "Internship",
+    location: "Mohali, India",
     period: "Apr 2023 – Oct 2023",
     clients: ["TaxZap — tax filing platform"],
     points: [
-      "Integrated 3 third-party APIs (payments, analytics, notifications) into the frontend, working with 2 backend engineers to ensure seamless data flow.",
+      "Integrated 3 third-party APIs (payments, analytics, notifications), working with 2 backend engineers.",
       "Built real-time data modules with WebSocket integration, reducing dashboard data refresh latency by 50%.",
       "Developed 15+ responsive UI components in React and Redux for a 10-step tax filing workflow.",
     ],
@@ -152,16 +162,33 @@ export const experience = [
 
 export const projects = [
   {
-    title: "EMAAR India — Customer Web Portal",
+    title: "TechEx — Agency Site & Headless CMS",
+    period: "Sep 2026 – Present",
     featured: true,
+    context:
+      "Agency site with a custom content platform behind it, designed and built end to end so the content team can publish pages, case studies and media without a third-party CMS vendor.",
+    stack: ["Next.js 14", "TypeScript", "MongoDB", "Mongoose", "NextAuth", "Zod", "AWS S3", "Vercel"],
+    points: [
+      "Designed and built the platform end to end, including a custom headless CMS with Mongoose schemas for pages, case studies and media behind Next.js API routes, removing the need for a third-party CMS vendor.",
+      "Separated editing from delivery: editors preview drafts in the production template, while the public site uses static generation with incremental revalidation, staying fast without manual rebuilds.",
+      "Designed the access-control model: NextAuth sessions with role-based permissions on all CMS API routes.",
+      "Built a media library with presigned uploads, so files go straight from the browser to S3-compatible storage without passing through the application server.",
+      "Improved the Lighthouse performance score from 60 to 93 by optimising image delivery, eliminating render-blocking resources and reducing client-side JavaScript through React Server Components.",
+    ],
+    outcomes: ["Lighthouse 60 → 93", "No CMS vendor", "Draft preview in production template"],
+    link: { href: "https://shopify-agency-site.vercel.app/", label: "Visit site" },
+  },
+  {
+    title: "EMAAR India — Customer Web Portal",
+    period: "Nov 2024 – Aug 2026",
     context:
       "Customer portal for one of India's largest real-estate developers: identity verification, document handling and service requests for existing homeowners.",
     stack: ["React", "TypeScript", "React Query", "Node.js", "AWS S3", "AWS Secrets Manager", "MUI"],
     points: [
       "Integrated the DigiLocker API for Aadhaar-based identity verification through a multi-step authentication flow, with API credentials held in AWS Secrets Manager.",
-      "Implemented secure document upload and access using AWS S3 pre-signed URLs with time-limited access.",
+      "Implemented secure document upload and access using AWS S3 pre-signed URLs with time-limited access, handling 1,000+ document uploads monthly.",
       "Reduced redundant client-side network requests by 30% with React Query caching.",
-      "Redesigned the No Objection Certificate journey and streamlined its form validation.",
+      "Redesigned the No Objection Certificate journey and its form validation, lifting completion rates by 25%.",
     ],
     outcomes: [
       "500+ verifications / month",
@@ -173,32 +200,21 @@ export const projects = [
   },
   {
     title: "MaxLife Insurance Platform",
+    period: "Nov 2023 – Oct 2024",
     context:
       "Policyholder platform for a national life insurer: dashboards spanning policy types and user roles, with marketing pages driven from a CMS.",
     stack: ["React", "Redux", "Strapi CMS", "Responsive Design"],
     points: [
-      "Built policyholder dashboards with Redux state management, handling data flows across 12+ policy types and 4 user roles.",
-      "Integrated Strapi CMS for content-driven page rendering, letting the marketing team update 50+ pages without developer involvement.",
+      "Integrated Strapi CMS so the marketing team could update 50+ content pages without developers.",
+      "Built policyholder dashboards with Redux, handling data flows across 12+ policy types and 4 user roles.",
       "Established a reusable component architecture of 15+ shared components, improving UI consistency and reducing new feature development time by 20%.",
     ],
     outcomes: ["12+ policy types", "4 user roles", "50+ CMS pages", "−20% build time"],
     access: "Client production platform — dashboards sit behind policyholder login.",
   },
   {
-    title: "GBP Automation & AI-Powered SEO Insights",
-    context:
-      "Internal automation that scores a business's Google Business Profile and turns the gaps into concrete SEO actions.",
-    stack: ["n8n", "LangChain", "LangGraph", "Node.js"],
-    points: [
-      "Built an automated Google Business Profile scoring system for logged-in business accounts using n8n workflow automation.",
-      "Generated website-improvement recommendations from profile signals such as reviews, photos and profile completion.",
-      "Implemented AI-powered SEO content suggestions with targeted keyword recommendations, orchestrated with LangChain and LangGraph.",
-    ],
-    outcomes: ["Automated profile scoring", "Keyword recommendations"],
-    access: "Internal tool — no public URL.",
-  },
-  {
     title: "TaxZap — Tax Filing Platform",
+    period: "Apr 2023 – Oct 2023",
     context:
       "Consumer tax-filing product built during my internship at Innow8 Apps: a ten-step guided filing workflow with live status updates.",
     stack: ["React", "TypeScript", "Redux", "Ant Design", "WebSockets"],
@@ -210,20 +226,33 @@ export const projects = [
     outcomes: ["10-step filing flow", "15+ UI components", "−50% refresh latency"],
     access: "Internship project — no public URL.",
   },
+];
+
+export const education = [
   {
-    title: "TechEx — Agency Site & Headless CMS",
-    context:
-      "Agency site with a custom content platform behind it, so the content team can publish pages, case studies and media without a third-party CMS vendor.",
-    stack: ["Next.js 14", "TypeScript", "MongoDB", "Mongoose", "NextAuth", "Zod", "AWS S3"],
-    points: [
-      "Built a custom headless CMS on MongoDB with Mongoose data models and Next.js API routes, letting the content team publish pages, case studies and media without a third-party CMS vendor.",
-      "Implemented a draft/publish workflow with live preview that renders drafts through the production template, so editors review the real page before publishing.",
-      "Added authentication with NextAuth and role-based access across CMS routes, with Zod request validation.",
-      "Built a media library with presigned uploads to S3-compatible object storage using the AWS S3 SDK.",
-      "Kept most of the interface in React Server Components and served the public site through static generation with incremental revalidation.",
-    ],
-    outcomes: ["Lighthouse 60 → 93", "No CMS vendor", "Draft/publish with live preview"],
-    link: { href: "https://shopify-agency-site.vercel.app/", label: "Visit site" },
+    degree: "Master of Engineering (M.E.)",
+    school: "Panjab University, Chandigarh",
+    year: "2021",
+  },
+  {
+    degree: "Bachelor of Technology (B.Tech)",
+    school: "Jaypee University of Information Technology, Waknaghat",
+    year: "2018",
+  },
+];
+
+export const certifications = [
+  {
+    title: "Quickstart: LangChain Essentials – TypeScript",
+    issuer: "LangChain Academy",
+    date: "Jun 2026",
+    href: "https://academy.langchain.com/certificates/tp216ciql6",
+  },
+  {
+    title: "Quickstart: LangGraph Essentials – TypeScript",
+    issuer: "LangChain Academy",
+    date: "Jun 2026",
+    href: "https://academy.langchain.com/certificates/1wxgsipdi5",
   },
 ];
 
@@ -232,5 +261,6 @@ export const sections = [
   { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
+  { id: "education", label: "Education" },
   { id: "contact", label: "Contact" },
 ];

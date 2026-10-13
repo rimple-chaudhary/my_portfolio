@@ -83,7 +83,7 @@ export default function Contact() {
     }`;
 
   return (
-    <section id="contact" className="section border-t border-hairline bg-ink-raised">
+    <section id="contact" className="section border-t border-hairline">
       <div className="shell">
         <p className="t-eyebrow">Contact</p>
         <h2 className="t-h2 mt-2">Get in touch</h2>
